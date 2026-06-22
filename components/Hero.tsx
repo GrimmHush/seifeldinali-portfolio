@@ -50,7 +50,11 @@ export function Hero() {
       >
         {opsThread.map((domain, i) => (
           <li key={domain} className="flex items-center gap-3">
-            {i > 0 && <span className="text-accent">·</span>}
+            {i > 0 && (
+              <span className="text-accent" aria-hidden="true">
+                ·
+              </span>
+            )}
             {domain}
           </li>
         ))}
