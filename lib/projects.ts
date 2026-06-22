@@ -321,9 +321,9 @@ export const stackTimeline: StackEra[] = [
 export const engineering = {
   name: "inventory-ledger",
   repoUrl: "https://github.com/GrimmHush/inventory-ledger",
-  // Standalone Netlify deploy of the web/ Vite client. Empty until deployed —
-  // the page shows a fallback card meanwhile. Fill this in to light up the embed.
-  demoUrl: "",
+  // Standalone Netlify deploy of the web/ Vite client (VITE_DEMO_OFFLINE mode):
+  // a backend-free, permanently-offline showcase of the offline-first sync engine.
+  demoUrl: "https://inventory-ledger-demo.netlify.app",
   intro:
     "The general-reviewer showcase — shown, not just linked. Client repos are private; this one is public, so the engineering is legible. It's the same class of offline-sync work that keeps Esto's POS taking orders through a connection drop, extracted into a runnable proof.",
   architectureSummary:
