@@ -51,3 +51,20 @@ test("primary navigation works", async ({ page }) => {
   await expect(page).toHaveURL(/\/about$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("About");
 });
+
+test("contact page exposes a working form", async ({ page }) => {
+  await page.goto("/");
+  // The landing hero's inline "contact me" link points to the new page.
+  await expect(page.getByRole("link", { name: "contact me" })).toHaveAttribute(
+    "href",
+    "/contact",
+  );
+  // And so does primary navigation (exact match avoids the hero's "contact me").
+  await page.getByRole("banner").getByRole("link", { name: "Contact", exact: true }).click();
+  await expect(page).toHaveURL(/\/contact$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Contact");
+  await expect(page.getByLabel("Name")).toBeVisible();
+  await expect(page.getByLabel("Email")).toBeVisible();
+  await expect(page.getByLabel("Message")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Send message" })).toBeVisible();
+});

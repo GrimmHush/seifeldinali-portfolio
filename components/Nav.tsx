@@ -18,6 +18,9 @@ export function Nav() {
           <Link href="/demonstration" className="transition-colors hover:text-foreground">
             Demonstration
           </Link>
+          <Link href="/contact" className="transition-colors hover:text-foreground">
+            Contact
+          </Link>
         </div>
       </Container>
     </header>

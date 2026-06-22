@@ -94,7 +94,7 @@ export function Hero() {
             background
           </Link>
           ,{" "}
-          <Link href="/#contact" className={linkClass}>
+          <Link href="/contact" className={linkClass}>
             contact me
           </Link>
           , or view my{" "}
