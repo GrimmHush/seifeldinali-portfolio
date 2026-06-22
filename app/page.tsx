@@ -87,16 +87,16 @@ export default function Home() {
         </ul>
       </Section>
 
-      {/* ENGINEERING TEASER — featured callout to the showcase */}
+      {/* DEMONSTRATION TEASER — featured callout to the showcase */}
       <Section bordered>
-        <SectionLabel>Engineering</SectionLabel>
+        <SectionLabel>Demonstration</SectionLabel>
         <Reveal className="mt-8 border-l-2 border-accent pl-6">
           <p className="max-w-xl font-serif text-2xl leading-snug">
             A public, runnable offline-first sync engine — the code my client repos
             can&apos;t show.
           </p>
           <Link
-            href="/engineering"
+            href="/demonstration"
             className="mt-4 inline-block text-sm text-accent underline underline-offset-4"
           >
             See the deep-dive →

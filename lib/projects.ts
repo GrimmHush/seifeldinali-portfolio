@@ -46,7 +46,7 @@ export type DeepProject = {
   challenges: Challenge[];
   cover?: ProjectImage;
   gallery?: ProjectImage[];
-  // Esto bridges to the public offline-sync proof on /engineering.
+  // Esto bridges to the public offline-sync proof on /demonstration.
   crossLinkEngineering?: boolean;
 };
 
@@ -359,7 +359,7 @@ export const stackTimeline: StackEra[] = [
   },
 ];
 
-// /engineering — the inventory-ledger showcase.
+// /demonstration — the inventory-ledger showcase.
 export const engineering = {
   name: "inventory-ledger",
   repoUrl: "https://github.com/GrimmHush/inventory-ledger",

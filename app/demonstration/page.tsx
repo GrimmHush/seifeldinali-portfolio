@@ -5,19 +5,19 @@ import { Reveal } from "@/components/Reveal";
 import { LiveDemo } from "@/components/LiveDemo";
 
 export const metadata: Metadata = {
-  title: "Engineering — inventory-ledger",
+  title: "Demonstration — inventory-ledger",
   description:
     "A public, runnable offline-first inventory sync engine: append-only movement log, conflict resolution, and a browser client you can take offline.",
 };
 
-export default function EngineeringPage() {
+export default function DemonstrationPage() {
   return (
     <Container width="prose">
       <article className="py-24">
         <Reveal as="section" on="load">
           <header>
             <p className="font-mono text-sm uppercase tracking-widest text-muted">
-              Engineering · public artifact
+              Demonstration · public artifact
             </p>
             <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
               {engineering.name}

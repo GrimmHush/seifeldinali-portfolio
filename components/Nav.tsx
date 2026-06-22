@@ -9,14 +9,14 @@ export function Nav() {
           Seifeldin Ali
         </Link>
         <div className="flex gap-6 text-sm text-muted">
-          <Link href="/#work" className="transition-colors hover:text-foreground">
-            Work
-          </Link>
-          <Link href="/engineering" className="transition-colors hover:text-foreground">
-            Engineering
-          </Link>
           <Link href="/about" className="transition-colors hover:text-foreground">
             About
+          </Link>
+          <Link href="/#work" className="transition-colors hover:text-foreground">
+            Projects
+          </Link>
+          <Link href="/demonstration" className="transition-colors hover:text-foreground">
+            Demonstration
           </Link>
         </div>
       </Container>

@@ -5,7 +5,7 @@ const BASE = "https://seifeldinali.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  const staticRoutes = ["", "/engineering", "/about"].map((path) => ({
+  const staticRoutes = ["", "/demonstration", "/about"].map((path) => ({
     url: `${BASE}${path}`,
     lastModified,
   }));

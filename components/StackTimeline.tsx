@@ -14,25 +14,7 @@ export function StackTimeline() {
   const reduce = useReducedMotion();
 
   return (
-    <div>
-      {/* Horizontal axis — desktop only; on mobile the period labels carry order. */}
-      <div className="mb-10 hidden items-center gap-4 sm:flex" aria-hidden="true">
-        <span className="font-mono text-sm text-muted">2020</span>
-        <span className="relative h-px flex-1 overflow-hidden">
-          <motion.span
-            data-reveal
-            className="absolute inset-0 origin-left bg-gradient-to-r from-border to-accent"
-            initial={reduce ? false : { scaleX: 0 }}
-            whileInView={reduce ? undefined : { scaleX: 1 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.9, ease }}
-          />
-        </span>
-        <span className="text-accent">→</span>
-        <span className="font-mono text-sm font-medium text-accent">2026</span>
-      </div>
-
-      <ol className="grid gap-10 sm:grid-cols-2">
+    <ol className="grid gap-10 sm:grid-cols-2">
         {stackTimeline.map((era, i) => {
           const isPresent = i === stackTimeline.length - 1;
           return (
@@ -61,7 +43,6 @@ export function StackTimeline() {
             </motion.li>
           );
         })}
-      </ol>
-    </div>
+    </ol>
   );
 }

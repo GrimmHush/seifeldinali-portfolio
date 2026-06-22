@@ -171,7 +171,7 @@ function DeepCaseStudy({ project }: { project: DeepProject }) {
             runnable proof-of-concept.
           </p>
           <Link
-            href="/engineering"
+            href="/demonstration"
             className="mt-2 inline-block text-sm text-accent underline underline-offset-4"
           >
             See the inventory-ledger deep-dive →

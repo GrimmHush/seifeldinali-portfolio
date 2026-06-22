@@ -1,6 +1,6 @@
 import { engineering } from "@/lib/projects";
 
-// Leads the /engineering page. When a standalone deploy URL is configured the
+// Leads the /demonstration page. When a standalone deploy URL is configured the
 // browser client is embedded live (toggle offline, queue movements, watch
 // conflict resolution); until then a fallback card explains how to run it.
 export function LiveDemo() {

@@ -20,8 +20,8 @@ test("a case study opens from the work grid", async ({ page }) => {
   await expect(page.getByRole("link", { name: /Visit live site/ })).toBeVisible();
 });
 
-test("engineering page embeds the live demo", async ({ page }) => {
-  await page.goto("/engineering");
+test("demonstration page embeds the live demo", async ({ page }) => {
+  await page.goto("/demonstration");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("inventory-ledger");
   await expect(
     page.locator('iframe[title="inventory-ledger — live offline-first demo"]'),
