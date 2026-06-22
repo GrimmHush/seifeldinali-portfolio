@@ -1,24 +1,25 @@
 import Link from "next/link";
+import { Container } from "@/components/ui";
 
 export function Nav() {
   return (
-    <header className="border-b border-black/10 dark:border-white/10">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+    <header className="border-b border-border">
+      <Container className="flex items-center justify-between py-5">
         <Link href="/" className="font-mono text-sm font-semibold tracking-tight">
           Seif El Din Ali
         </Link>
-        <div className="flex gap-6 text-sm">
-          <Link href="/#work" className="hover:underline">
+        <div className="flex gap-6 text-sm text-muted">
+          <Link href="/#work" className="transition-colors hover:text-foreground">
             Work
           </Link>
-          <Link href="/engineering" className="hover:underline">
+          <Link href="/engineering" className="transition-colors hover:text-foreground">
             Engineering
           </Link>
-          <Link href="/about" className="hover:underline">
+          <Link href="/about" className="transition-colors hover:text-foreground">
             About
           </Link>
         </div>
-      </nav>
+      </Container>
     </header>
   );
 }

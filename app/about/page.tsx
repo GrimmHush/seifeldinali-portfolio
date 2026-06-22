@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Container } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "About",
@@ -8,9 +9,10 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <article className="mx-auto max-w-3xl px-6 py-24">
-      <h1 className="text-4xl font-semibold tracking-tight">About</h1>
-      <div className="mt-8 space-y-6 opacity-80">
+    <Container width="prose">
+      <article className="py-24">
+        <h1 className="font-serif text-5xl font-semibold tracking-tight">About</h1>
+        <div className="mt-8 space-y-6 text-lg">
         <p>
           I&apos;m Seifeldin Ali, co-founder of Iano — a two-person marketing agency.
           &ldquo;Two-person&rdquo; is the honest framing: there&apos;s no team behind the
@@ -30,7 +32,8 @@ export default function AboutPage() {
           collecting frameworks. This site is built on that same stack, in the open, so the
           claim is something you can read rather than something I assert.
         </p>
-      </div>
-    </article>
+        </div>
+      </article>
+    </Container>
   );
 }

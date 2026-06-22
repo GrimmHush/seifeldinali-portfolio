@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
+/* ── Design tokens ──────────────────────────────────────────────
+   Semantic palette. Light/dark flips here, so components reference
+   the token (text-muted, border-border, text-accent) and never a
+   raw colour or an opacity hack. */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --foreground: #0a0a0a;
+  --muted: #475569; /* slate-600 — secondary text */
+  --border: #e2e8f0; /* slate-200 — hairlines */
+  --accent: #2563eb; /* blue-600 */
+  --accent-contrast: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --muted: #94a3b8; /* slate-400 */
+    --border: #1e293b; /* slate-800 */
+    --accent: #3b82f6; /* blue-500 */
+    --accent-contrast: #ffffff;
   }
 }
 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-fraunces);
+}
+
+/* ── Base typography ──────────────────────────────────────────── */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  /* Editorial niceties — balanced display lines, tidy paragraph rag. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ── A11y & polish ────────────────────────────────────────────── */
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
