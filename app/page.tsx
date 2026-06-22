@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { deepProjects, compactProjects } from "@/lib/projects";
 import { Container, Section, SectionLabel } from "@/components/ui";
 import { StackTimeline } from "@/components/StackTimeline";
@@ -27,16 +28,29 @@ export default function Home() {
             <Reveal key={p.slug} as="li" delay={i * 0.08} className="bg-background">
               <Link
                 href={`/work/${p.slug}`}
-                className="group flex h-full flex-col p-6 transition-colors hover:bg-foreground/[0.02]"
+                className="group flex h-full flex-col transition-colors hover:bg-foreground/[0.02]"
               >
-                <h3 className="font-serif text-2xl font-semibold transition-colors group-hover:text-accent">
-                  {p.name}
-                </h3>
-                <p className="mt-2 text-muted">{p.positioning}</p>
-                <p className="mt-3 font-mono text-xs text-muted">
-                  {p.client} · {p.year}
-                </p>
-                <span className="mt-6 text-sm text-accent">Case study →</span>
+                {p.cover && (
+                  <div className="relative aspect-[16/10] overflow-hidden border-b border-border">
+                    <Image
+                      src={p.cover.src}
+                      alt={p.cover.alt}
+                      fill
+                      sizes="(min-width: 640px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                )}
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-serif text-2xl font-semibold transition-colors group-hover:text-accent">
+                    {p.name}
+                  </h3>
+                  <p className="mt-2 text-muted">{p.positioning}</p>
+                  <p className="mt-3 font-mono text-xs text-muted">
+                    {p.client} · {p.year}
+                  </p>
+                  <span className="mt-6 text-sm text-accent">Case study →</span>
+                </div>
               </Link>
             </Reveal>
           ))}
@@ -49,19 +63,25 @@ export default function Home() {
         <ul className="mt-8 grid gap-8 sm:grid-cols-3">
           {compactProjects.map((p, i) => (
             <Reveal key={p.name} as="li" delay={i * 0.08}>
-              <a
-                href={p.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-              >
+              <Link href={`/work/${p.slug}`} className="group block">
+                {p.cover && (
+                  <div className="relative mb-4 aspect-[16/10] overflow-hidden border border-border">
+                    <Image
+                      src={p.cover.src}
+                      alt={p.cover.alt}
+                      fill
+                      sizes="(min-width: 640px) 33vw, 100vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                )}
                 <h3 className="font-serif text-xl font-semibold transition-colors group-hover:text-accent">
-                  {p.name} ↗
+                  {p.name}
                 </h3>
                 <p className="mt-2 text-sm text-muted">{p.positioning}</p>
                 <p className="mt-2 text-sm text-muted">{p.detail}</p>
                 <p className="mt-3 font-mono text-xs text-muted">{p.stack.join(" · ")}</p>
-              </a>
+              </Link>
             </Reveal>
           ))}
         </ul>

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { deepProjects } from "@/lib/projects";
+import { deepProjects, compactProjects } from "@/lib/projects";
 
 const BASE = "https://seifeldinali.com";
 
@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${BASE}${path}`,
     lastModified,
   }));
-  const workRoutes = deepProjects.map((p) => ({
+  const workRoutes = [...deepProjects, ...compactProjects].map((p) => ({
     url: `${BASE}/work/${p.slug}`,
     lastModified,
   }));

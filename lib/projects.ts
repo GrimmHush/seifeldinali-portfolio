@@ -8,6 +8,26 @@ export type Challenge = {
   body: string;
 };
 
+// A showcase image: a path under public/work/<slug>/, with descriptive alt text.
+export type ProjectImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
+// Cover thumbnail (01-cover.png) — the card thumbnail and case-study lead image.
+const cover = (slug: string, name: string): ProjectImage => ({
+  src: `/work/${slug}/01-cover.png`,
+  alt: `${name} — product screenshot`,
+});
+
+// Gallery shots (02.png … NN.png), in numeric order.
+const gallery = (slug: string, count: number, name: string): ProjectImage[] =>
+  Array.from({ length: count }, (_, i) => {
+    const n = String(i + 2).padStart(2, "0");
+    return { src: `/work/${slug}/${n}.png`, alt: `${name} — screenshot ${i + 1}` };
+  });
+
 export type DeepProject = {
   slug: string;
   name: string;
@@ -24,17 +44,22 @@ export type DeepProject = {
   keyDecisions: string[];
   architecture: string;
   challenges: Challenge[];
+  cover?: ProjectImage;
+  gallery?: ProjectImage[];
   // Esto bridges to the public offline-sync proof on /engineering.
   crossLinkEngineering?: boolean;
 };
 
 export type CompactProject = {
+  slug: string;
   name: string;
   positioning: string;
   liveUrl: string;
   stack: string[];
   status: string;
   detail: string;
+  cover?: ProjectImage;
+  gallery?: ProjectImage[];
 };
 
 export type StackEra = {
@@ -44,8 +69,8 @@ export type StackEra = {
   summary: string;
 };
 
-// Identical across every deep project — stated once, referenced per project.
-const ROLE_TEAM =
+// Identical across every project — stated once, referenced per project.
+export const ROLE_TEAM =
   "Iano — a two-person marketing agency I co-founded. Both founders engineered the build.";
 
 export const deepProjects: DeepProject[] = [
@@ -93,6 +118,8 @@ export const deepProjects: DeepProject[] = [
         body: "Keeping the site SEO-friendly and fast while leaning on Framer Motion animations and rich imagery.",
       },
     ],
+    cover: cover("octavia-carbon", "Octavia Carbon"),
+    gallery: gallery("octavia-carbon", 11, "Octavia Carbon"),
   },
   {
     slug: "merx",
@@ -148,6 +175,8 @@ export const deepProjects: DeepProject[] = [
         body: "Solved with a keyed React-PDF template registry (with a Puppeteer fallback) shared across modules.",
       },
     ],
+    cover: cover("merx", "MERX"),
+    gallery: gallery("merx", 24, "MERX"),
   },
   {
     slug: "esto",
@@ -200,6 +229,8 @@ export const deepProjects: DeepProject[] = [
         body: "Fixed a bug where unique visitors were stuck at 1 on the dashboard overview.",
       },
     ],
+    cover: cover("esto", "Esto"),
+    gallery: gallery("esto", 13, "Esto"),
     crossLinkEngineering: true,
   },
   {
@@ -257,11 +288,14 @@ export const deepProjects: DeepProject[] = [
         body: "Orders, riders, and admin each see the right live view, scoped by role through the API and Socket.IO channels.",
       },
     ],
+    cover: cover("amana", "Amana"),
+    // Gallery shots to follow.
   },
 ];
 
 export const compactProjects: CompactProject[] = [
   {
+    slug: "iano-marketing",
     name: "Iano Marketing",
     positioning:
       "The studio's own agency site and digital portfolio, with per-person profile cards.",
@@ -269,9 +303,12 @@ export const compactProjects: CompactProject[] = [
     stack: ["React (Create React App)"],
     status: "Built + maintained by Iano",
     detail:
-      "Serves shareable individual profile pages (e.g. /profile/modasser) that double as digital business cards with save-contact and direct WhatsApp/LinkedIn links.",
+      "Serves shareable individual profile pages (e.g. /profile/saif) that double as digital business cards with save-contact and direct WhatsApp/LinkedIn links.",
+    cover: cover("iano-marketing", "Iano Marketing"),
+    gallery: gallery("iano-marketing", 4, "Iano Marketing"),
   },
   {
+    slug: "namaa",
     name: "Namaa",
     positioning: "Marketing + enquiry site for a Kenya-based tropical-fruit exporter.",
     liveUrl: "https://namaafruits.com",
@@ -279,8 +316,11 @@ export const compactProjects: CompactProject[] = [
     status: "Built + maintained by Iano",
     detail:
       "A product-led enquiry form lets international buyers select specific produce (avocado, mango, pineapple, etc.) to request quotes, tailored to a cold-chain export workflow.",
+    cover: cover("namaa", "Namaa"),
+    gallery: gallery("namaa", 5, "Namaa"),
   },
   {
+    slug: "sahara-winds",
     name: "Sahara Winds",
     positioning:
       "Marketing + enquiry site for a Nairobi-based air & sea freight company.",
@@ -289,6 +329,8 @@ export const compactProjects: CompactProject[] = [
     status: "Built + maintained by Iano",
     detail:
       "Service-segmented site (air/sea freight, air charter, warehousing & cold storage, road/rail, customs clearance) with a topic-routed inquiry form feeding the right service line.",
+    cover: cover("sahara-winds", "Sahara Winds"),
+    gallery: gallery("sahara-winds", 4, "Sahara Winds"),
   },
 ];
 
@@ -336,4 +378,21 @@ export const engineering = {
 
 export function getDeepProject(slug: string): DeepProject | undefined {
   return deepProjects.find((p) => p.slug === slug);
+}
+
+export function getCompactProject(slug: string): CompactProject | undefined {
+  return compactProjects.find((p) => p.slug === slug);
+}
+
+// Resolves a slug to either project kind for the shared /work/[slug] route.
+export type ResolvedProject =
+  | { kind: "deep"; project: DeepProject }
+  | { kind: "compact"; project: CompactProject };
+
+export function getProject(slug: string): ResolvedProject | undefined {
+  const deep = getDeepProject(slug);
+  if (deep) return { kind: "deep", project: deep };
+  const compact = getCompactProject(slug);
+  if (compact) return { kind: "compact", project: compact };
+  return undefined;
 }
