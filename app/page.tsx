@@ -28,10 +28,10 @@ export default function Home() {
             <Reveal key={p.slug} as="li" delay={i * 0.08} className="bg-background">
               <Link
                 href={`/work/${p.slug}`}
-                className="group flex h-full flex-col transition-colors hover:bg-foreground/[0.02]"
+                className="group flex h-full flex-col transition-colors hover:bg-foreground/2"
               >
                 {p.cover && (
-                  <div className="relative aspect-[16/10] overflow-hidden border-b border-border">
+                  <div className="relative aspect-16/10 overflow-hidden border-b border-border">
                     <Image
                       src={p.cover.src}
                       alt={p.cover.alt}
@@ -65,7 +65,7 @@ export default function Home() {
             <Reveal key={p.name} as="li" delay={i * 0.08}>
               <Link href={`/work/${p.slug}`} className="group block">
                 {p.cover && (
-                  <div className="relative mb-4 aspect-[16/10] overflow-hidden border border-border">
+                  <div className="relative mb-4 aspect-16/10 overflow-hidden border border-border">
                     <Image
                       src={p.cover.src}
                       alt={p.cover.alt}

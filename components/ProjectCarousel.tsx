@@ -73,7 +73,7 @@ export function ProjectCarousel({ images }: { images: ProjectImage[] }) {
 
   return (
     <div>
-      <div className="relative aspect-[16/9] overflow-hidden border border-border bg-background">
+      <div className="relative aspect-video overflow-hidden border border-border bg-background">
         <AnimatePresence mode="wait" initial={false}>
           <motion.button
             key={current.src}
