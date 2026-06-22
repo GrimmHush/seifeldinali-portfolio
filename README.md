@@ -1,6 +1,6 @@
 # seifeldinali.com
 
-Personal portfolio for Seif El Din Ali — co-founder of Iano. A public, Next.js 16 +
+Personal portfolio for Seifeldin Ali — co-founder of Iano. A public, Next.js 16 +
 TypeScript site, built to be read by reviewers. See `CLAUDE.md` for architecture.
 
 ## Local development (Windows / PowerShell)

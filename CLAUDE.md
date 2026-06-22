@@ -1,6 +1,6 @@
 # seifeldinali.com — architecture
 
-Personal portfolio for Seif El Din Ali. Built as a public proof-of-competence
+Personal portfolio for Seifeldin Ali. Built as a public proof-of-competence
 artifact: the source is meant to be read by reviewers, so it stays small and legible.
 
 ## Stack
@@ -26,6 +26,12 @@ artifact: the source is meant to be read by reviewers, so it stays small and leg
 - Content lives in `lib/`, never hard-coded in pages.
 - Run `npm run typecheck` and `npm run lint` before commit. Conventional commits.
 
-## Build sequence (see build plan)
+## Source docs (read these before M1)
+- `docs/BUILD_PLAN.md` — the full plan: IA, milestones, design direction, decisions.
+- `docs/case-studies.md` — written content for all seven projects. M1 fills the deep-dive
+  bodies from here into `lib/projects.ts` and the `/work/[slug]` template. (Reconcile with
+  the live `iano-portfolio-projects.md` first — see the note at the top of that file.)
+
+## Build sequence (see docs/BUILD_PLAN.md)
 M0 scaffold → M1 content → M2 design system → M3 pages → M4 motion → M5 engineering demo
 → M6 polish. Motion is added late, on a working site, on purpose.

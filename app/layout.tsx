@@ -12,16 +12,16 @@ const SITE_URL = "https://seifeldinali.com";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Seif El Din Ali — Full-stack engineer",
-    template: "%s · Seif El Din Ali",
+    default: "Seifeldin Ali — Full-stack engineer",
+    template: "%s · Seifeldin Ali",
   },
   description:
     "Production generalist and co-founder of Iano. Next.js, TypeScript, full-stack — from marketing sites to multi-tenant ERP and offline-first POS.",
   openGraph: {
     type: "website",
     url: SITE_URL,
-    siteName: "Seif El Din Ali",
-    title: "Seif El Din Ali — Full-stack engineer",
+    siteName: "Seifeldin Ali",
+    title: "Seifeldin Ali — Full-stack engineer",
     description:
       "Production generalist and co-founder of Iano. Next.js, TypeScript, full-stack.",
   },
