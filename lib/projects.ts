@@ -289,7 +289,7 @@ export const deepProjects: DeepProject[] = [
       },
     ],
     cover: cover("amana", "Amana"),
-    // Gallery shots to follow.
+    gallery: gallery("amana", 9, "Amana"),
   },
 ];
 
