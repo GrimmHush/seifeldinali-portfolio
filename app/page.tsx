@@ -2,34 +2,16 @@ import Link from "next/link";
 import { deepProjects, compactProjects } from "@/lib/projects";
 import { Container, Section, SectionLabel } from "@/components/ui";
 import { StackTimeline } from "@/components/StackTimeline";
-
-// The business-operations through-line: every project plugs into a real
-// operational domain. Rendered as a structural eyebrow under the hero.
-const opsThread = ["CRM", "ERP", "POS", "Payments", "Logistics"];
+import { Hero } from "@/components/Hero";
+import { Reveal } from "@/components/Reveal";
 
 export default function Home() {
   return (
     <Container>
-      {/* HERO — the thesis, stated typographically */}
-      <section className="py-24 sm:py-32">
-        <h1 className="max-w-4xl font-serif text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-          Production generalist. I build the whole system — front end to ops.
-        </h1>
-        <p className="mt-8 max-w-xl text-lg text-muted">
-          Co-founder of Iano. Seven shipped products, each wired into a real business
-          process.
-        </p>
-        <ul className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs uppercase tracking-widest text-muted">
-          {opsThread.map((domain, i) => (
-            <li key={domain} className="flex items-center gap-3">
-              {i > 0 && <span className="text-accent">·</span>}
-              {domain}
-            </li>
-          ))}
-        </ul>
-      </section>
+      {/* HERO — the thesis, stated typographically (staggered load entrance) */}
+      <Hero />
 
-      {/* SIGNATURE — stack evolution 2020 → 2026 */}
+      {/* SIGNATURE — stack evolution 2020 → 2026 (self-animating on scroll) */}
       <Section bordered>
         <SectionLabel>Stack evolution · 2020 → 2026</SectionLabel>
         <div className="mt-10">
@@ -41,8 +23,8 @@ export default function Home() {
       <Section bordered id="work">
         <SectionLabel>Selected work</SectionLabel>
         <ul className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
-          {deepProjects.map((p) => (
-            <li key={p.slug} className="bg-background">
+          {deepProjects.map((p, i) => (
+            <Reveal key={p.slug} as="li" delay={i * 0.08} className="bg-background">
               <Link
                 href={`/work/${p.slug}`}
                 className="group flex h-full flex-col p-6 transition-colors hover:bg-foreground/[0.02]"
@@ -56,7 +38,7 @@ export default function Home() {
                 </p>
                 <span className="mt-6 text-sm text-accent">Case study →</span>
               </Link>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </Section>
@@ -65,8 +47,8 @@ export default function Home() {
       <Section bordered>
         <SectionLabel>Also shipped</SectionLabel>
         <ul className="mt-8 grid gap-8 sm:grid-cols-3">
-          {compactProjects.map((p) => (
-            <li key={p.name}>
+          {compactProjects.map((p, i) => (
+            <Reveal key={p.name} as="li" delay={i * 0.08}>
               <a
                 href={p.liveUrl}
                 target="_blank"
@@ -80,7 +62,7 @@ export default function Home() {
                 <p className="mt-2 text-sm text-muted">{p.detail}</p>
                 <p className="mt-3 font-mono text-xs text-muted">{p.stack.join(" · ")}</p>
               </a>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </Section>
@@ -88,7 +70,7 @@ export default function Home() {
       {/* ENGINEERING TEASER — featured callout to the showcase */}
       <Section bordered>
         <SectionLabel>Engineering</SectionLabel>
-        <div className="mt-8 border-l-2 border-accent pl-6">
+        <Reveal className="mt-8 border-l-2 border-accent pl-6">
           <p className="max-w-xl font-serif text-2xl leading-snug">
             A public, runnable offline-first sync engine — the code my client repos
             can&apos;t show.
@@ -99,7 +81,7 @@ export default function Home() {
           >
             See the deep-dive →
           </Link>
-        </div>
+        </Reveal>
       </Section>
     </Container>
   );

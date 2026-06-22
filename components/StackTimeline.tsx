@@ -1,20 +1,33 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
 import { stackTimeline } from "@/lib/projects";
 import { Chip } from "@/components/ui";
 
 // The site's signature element: the deliberate 2020 → 2026 stack evolution.
 // The axis line transitions muted → accent, so the accent reads as "the
-// evolution converges on the present." Scroll-reveal animation lands in M4.
+// evolution converges on the present." On scroll-in, the line draws left→right
+// and the eras stagger in beneath it.
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 export function StackTimeline() {
+  const reduce = useReducedMotion();
+
   return (
     <div>
-      {/* Horizontal axis — the chronology made visual. Desktop only; on mobile
-          the per-era period labels carry the order. */}
-      <div
-        className="mb-10 hidden items-center gap-4 sm:flex"
-        aria-hidden="true"
-      >
+      {/* Horizontal axis — desktop only; on mobile the period labels carry order. */}
+      <div className="mb-10 hidden items-center gap-4 sm:flex" aria-hidden="true">
         <span className="font-mono text-sm text-muted">2020</span>
-        <span className="h-px flex-1 bg-gradient-to-r from-border to-accent" />
+        <span className="relative h-px flex-1 overflow-hidden">
+          <motion.span
+            data-reveal
+            className="absolute inset-0 origin-left bg-gradient-to-r from-border to-accent"
+            initial={reduce ? false : { scaleX: 0 }}
+            whileInView={reduce ? undefined : { scaleX: 1 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.9, ease }}
+          />
+        </span>
         <span className="text-accent">→</span>
         <span className="font-mono text-sm font-medium text-accent">2026</span>
       </div>
@@ -23,7 +36,14 @@ export function StackTimeline() {
         {stackTimeline.map((era, i) => {
           const isPresent = i === stackTimeline.length - 1;
           return (
-            <li key={era.title}>
+            <motion.li
+              key={era.title}
+              data-reveal
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, ease, delay: reduce ? 0 : 0.2 + i * 0.12 }}
+            >
               <p
                 className={`font-mono text-sm ${
                   isPresent ? "font-medium text-accent" : "text-muted"
@@ -38,7 +58,7 @@ export function StackTimeline() {
                   <Chip key={tech}>{tech}</Chip>
                 ))}
               </ul>
-            </li>
+            </motion.li>
           );
         })}
       </ol>

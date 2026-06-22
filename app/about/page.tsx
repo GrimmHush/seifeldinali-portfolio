@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui";
+import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "About",
@@ -11,14 +12,16 @@ export default function AboutPage() {
   return (
     <Container width="prose">
       <article className="py-24">
-        <header>
-          <p className="font-mono text-sm uppercase tracking-widest text-muted">
-            A two-person studio
-          </p>
-          <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
-            About
-          </h1>
-        </header>
+        <Reveal as="section" on="load">
+          <header>
+            <p className="font-mono text-sm uppercase tracking-widest text-muted">
+              A two-person studio
+            </p>
+            <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
+              About
+            </h1>
+          </header>
+        </Reveal>
         <div className="mt-10 space-y-6 leading-relaxed">
           <p className="text-xl leading-snug text-foreground">
             I&apos;m Seifeldin Ali, co-founder of Iano — a two-person marketing agency.

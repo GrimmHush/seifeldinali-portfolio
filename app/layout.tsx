@@ -43,6 +43,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        {/* Degrade-visible fallback: without JS, Framer's inline opacity:0 never
+            animates away, so force every entrance element to its final state. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

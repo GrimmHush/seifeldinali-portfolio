@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { engineering } from "@/lib/projects";
 import { Container, SpecRow } from "@/components/ui";
+import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Engineering — inventory-ledger",
@@ -12,15 +13,17 @@ export default function EngineeringPage() {
   return (
     <Container width="prose">
       <article className="py-24">
-        <header>
-          <p className="font-mono text-sm uppercase tracking-widest text-muted">
-            Engineering · public artifact
-          </p>
-          <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
-            {engineering.name}
-          </h1>
-          <p className="mt-5 max-w-2xl text-xl leading-snug">{engineering.intro}</p>
-        </header>
+        <Reveal as="section" on="load">
+          <header>
+            <p className="font-mono text-sm uppercase tracking-widest text-muted">
+              Engineering · public artifact
+            </p>
+            <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
+              {engineering.name}
+            </h1>
+            <p className="mt-5 max-w-2xl text-xl leading-snug">{engineering.intro}</p>
+          </header>
+        </Reveal>
 
         {/* LEAD WITH THE LIVE DEMO (standalone-deployed browser client) — wired in M5 */}
         <div className="mt-10 flex min-h-40 items-center justify-center border border-dashed border-border px-4 text-center text-sm text-muted">
@@ -31,17 +34,23 @@ export default function EngineeringPage() {
         <hr className="mt-12 border-border" />
 
         <div className="mt-12 space-y-14">
-          <SpecRow label="How it works">
-            <p className="leading-relaxed">{engineering.architectureSummary}</p>
-          </SpecRow>
+          <Reveal>
+            <SpecRow label="How it works">
+              <p className="leading-relaxed">{engineering.architectureSummary}</p>
+            </SpecRow>
+          </Reveal>
 
-          <SpecRow label="Conflicts & overdraw">
-            <p className="leading-relaxed">{engineering.conflictNote}</p>
-          </SpecRow>
+          <Reveal>
+            <SpecRow label="Conflicts & overdraw">
+              <p className="leading-relaxed">{engineering.conflictNote}</p>
+            </SpecRow>
+          </Reveal>
 
-          <SpecRow label="Trade-offs">
-            <p className="leading-relaxed">{engineering.tradeOffs}</p>
-          </SpecRow>
+          <Reveal>
+            <SpecRow label="Trade-offs">
+              <p className="leading-relaxed">{engineering.tradeOffs}</p>
+            </SpecRow>
+          </Reveal>
         </div>
 
         <a

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { deepProjects, getDeepProject } from "@/lib/projects";
 import { Container, Chip, SpecRow } from "@/components/ui";
+import { Reveal } from "@/components/Reveal";
 
 // Only the four known slugs are valid; anything else 404s.
 export const dynamicParams = false;
@@ -35,7 +36,7 @@ export default async function CaseStudyPage({
     <Container width="prose">
       <article className="py-24">
         {/* CaseHero */}
-        <header>
+        <Reveal as="section" on="load"><header>
           <p className="font-mono text-sm uppercase tracking-widest text-muted">
             {project.client} · {project.year}
           </p>
@@ -56,65 +57,79 @@ export default async function CaseStudyPage({
               Visit live site ↗
             </a>
           </div>
-        </header>
+        </header></Reveal>
 
         <hr className="mt-12 border-border" />
 
         <div className="mt-12 space-y-14">
-          <SpecRow label="Summary">
-            <p className="text-lg leading-relaxed">{project.summary}</p>
-          </SpecRow>
+          <Reveal>
+            <SpecRow label="Summary">
+              <p className="text-lg leading-relaxed">{project.summary}</p>
+            </SpecRow>
+          </Reveal>
 
-          <SpecRow label="Context">
-            <p className="leading-relaxed">{project.context}</p>
-          </SpecRow>
+          <Reveal>
+            <SpecRow label="Context">
+              <p className="leading-relaxed">{project.context}</p>
+            </SpecRow>
+          </Reveal>
 
-          <SpecRow label="Role & team">
-            <p className="leading-relaxed">{project.roleTeam}</p>
-          </SpecRow>
+          <Reveal>
+            <SpecRow label="Role & team">
+              <p className="leading-relaxed">{project.roleTeam}</p>
+            </SpecRow>
+          </Reveal>
 
-          <SpecRow label="Stack">
-            <ul className="flex flex-wrap gap-2">
-              {project.stack.map((tech) => (
-                <Chip key={tech}>{tech}</Chip>
-              ))}
-            </ul>
-          </SpecRow>
+          <Reveal>
+            <SpecRow label="Stack">
+              <ul className="flex flex-wrap gap-2">
+                {project.stack.map((tech) => (
+                  <Chip key={tech}>{tech}</Chip>
+                ))}
+              </ul>
+            </SpecRow>
+          </Reveal>
 
           {/* Key decisions get the accent rule — the deliberate, defensible choices. */}
-          <SpecRow label="Key decisions">
-            <ol className="space-y-5">
-              {project.keyDecisions.map((decision) => (
-                <li
-                  key={decision}
-                  className="border-l-2 border-accent pl-4 leading-relaxed"
-                >
-                  {decision}
-                </li>
-              ))}
-            </ol>
-          </SpecRow>
+          <Reveal>
+            <SpecRow label="Key decisions">
+              <ol className="space-y-5">
+                {project.keyDecisions.map((decision) => (
+                  <li
+                    key={decision}
+                    className="border-l-2 border-accent pl-4 leading-relaxed"
+                  >
+                    {decision}
+                  </li>
+                ))}
+              </ol>
+            </SpecRow>
+          </Reveal>
 
-          <SpecRow label="Architecture">
-            <p className="leading-relaxed">{project.architecture}</p>
-          </SpecRow>
+          <Reveal>
+            <SpecRow label="Architecture">
+              <p className="leading-relaxed">{project.architecture}</p>
+            </SpecRow>
+          </Reveal>
 
-          <SpecRow label="Challenges">
-            <ul className="space-y-5">
-              {project.challenges.map((challenge) => (
-                <li key={challenge.body} className="leading-relaxed">
-                  {challenge.heading && (
-                    <span className="font-semibold">{challenge.heading}: </span>
-                  )}
-                  {challenge.body}
-                </li>
-              ))}
-            </ul>
-          </SpecRow>
+          <Reveal>
+            <SpecRow label="Challenges">
+              <ul className="space-y-5">
+                {project.challenges.map((challenge) => (
+                  <li key={challenge.body} className="leading-relaxed">
+                    {challenge.heading && (
+                      <span className="font-semibold">{challenge.heading}: </span>
+                    )}
+                    {challenge.body}
+                  </li>
+                ))}
+              </ul>
+            </SpecRow>
+          </Reveal>
         </div>
 
         {project.crossLinkEngineering && (
-          <aside className="mt-14 border-l-2 border-accent pl-6">
+          <Reveal as="section" className="mt-14 border-l-2 border-accent pl-6">
             <p className="leading-relaxed">
               The offline-sync engineering behind this POS is demonstrated in a public,
               runnable proof-of-concept.
@@ -125,7 +140,7 @@ export default async function CaseStudyPage({
             >
               See the inventory-ledger deep-dive →
             </Link>
-          </aside>
+          </Reveal>
         )}
       </article>
     </Container>
