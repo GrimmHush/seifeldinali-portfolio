@@ -6,7 +6,7 @@ export function Nav() {
     <header className="border-b border-border">
       <Container className="flex items-center justify-between py-5">
         <Link href="/" className="font-mono text-sm font-semibold tracking-tight">
-          Seif El Din Ali
+          Seifeldin Ali
         </Link>
         <div className="flex gap-6 text-sm text-muted">
           <Link href="/#work" className="transition-colors hover:text-foreground">

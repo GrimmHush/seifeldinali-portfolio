@@ -28,6 +28,23 @@ test("engineering page embeds the live demo", async ({ page }) => {
   ).toBeVisible();
 });
 
+test("footer contact bar exposes the right intents", async ({ page }) => {
+  await page.goto("/");
+  const footer = page.getByRole("contentinfo");
+  await expect(footer.getByRole("link", { name: "Email" })).toHaveAttribute(
+    "href",
+    "mailto:saifadel97@gmail.com",
+  );
+  await expect(footer.getByRole("link", { name: /WhatsApp/ })).toHaveAttribute(
+    "href",
+    "https://wa.me/254795029950",
+  );
+  await expect(footer.getByRole("link", { name: "Save contact" })).toHaveAttribute(
+    "download",
+    "",
+  );
+});
+
 test("primary navigation works", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("link", { name: "About" }).click();
