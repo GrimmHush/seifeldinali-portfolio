@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { deepProjects, compactProjects } from "@/lib/projects";
+import { deepProjects, compactProjects, stackTimeline } from "@/lib/projects";
 
 export default function Home() {
   return (
@@ -20,9 +20,25 @@ export default function Home() {
         <h2 className="text-sm font-mono uppercase tracking-widest opacity-50">
           Stack evolution · 2020 → 2026
         </h2>
-        <p className="mt-4 max-w-xl opacity-70">
-          [Timeline component] React / Emotion / MUI → Next.js / TypeScript / full-stack.
-        </p>
+        <ol className="mt-8 grid gap-8 sm:grid-cols-2">
+          {stackTimeline.map((era) => (
+            <li key={era.title}>
+              <p className="font-mono text-sm opacity-50">{era.period}</p>
+              <h3 className="mt-2 text-xl font-semibold">{era.title}</h3>
+              <p className="mt-2 opacity-70">{era.summary}</p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {era.stack.map((tech) => (
+                  <li
+                    key={tech}
+                    className="rounded border border-black/10 px-2 py-1 text-sm dark:border-white/10"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* FEATURED WORK — 4 deep case studies */}
@@ -63,6 +79,10 @@ export default function Home() {
               >
                 <h3 className="font-semibold group-hover:underline">{p.name} ↗</h3>
                 <p className="mt-2 text-sm opacity-70">{p.positioning}</p>
+                <p className="mt-2 text-sm opacity-60">{p.detail}</p>
+                <p className="mt-2 font-mono text-xs opacity-50">
+                  {p.stack.join(" · ")}
+                </p>
               </a>
             </li>
           ))}
