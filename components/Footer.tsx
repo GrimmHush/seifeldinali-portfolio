@@ -14,7 +14,7 @@ const actions = [
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-border py-16">
+    <footer id="contact" className="mt-24 border-t border-border py-16">
       <Container>
         <h2 className="font-serif text-3xl font-semibold tracking-tight">Get in touch</h2>
         <p className="mt-3 max-w-md text-muted">
