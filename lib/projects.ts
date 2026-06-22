@@ -317,10 +317,13 @@ export const stackTimeline: StackEra[] = [
   },
 ];
 
-// /engineering — the inventory-ledger showcase. Live demo embed lands in M5.
+// /engineering — the inventory-ledger showcase.
 export const engineering = {
   name: "inventory-ledger",
   repoUrl: "https://github.com/GrimmHush/inventory-ledger",
+  // Standalone Netlify deploy of the web/ Vite client. Empty until deployed —
+  // the page shows a fallback card meanwhile. Fill this in to light up the embed.
+  demoUrl: "",
   intro:
     "The general-reviewer showcase — shown, not just linked. Client repos are private; this one is public, so the engineering is legible. It's the same class of offline-sync work that keeps Esto's POS taking orders through a connection drop, extracted into a runnable proof.",
   architectureSummary:

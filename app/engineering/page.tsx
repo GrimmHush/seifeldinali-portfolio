@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { engineering } from "@/lib/projects";
 import { Container, SpecRow } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
+import { LiveDemo } from "@/components/LiveDemo";
 
 export const metadata: Metadata = {
   title: "Engineering — inventory-ledger",
@@ -25,10 +26,9 @@ export default function EngineeringPage() {
           </header>
         </Reveal>
 
-        {/* LEAD WITH THE LIVE DEMO (standalone-deployed browser client) — wired in M5 */}
-        <div className="mt-10 flex min-h-40 items-center justify-center border border-dashed border-border px-4 text-center text-sm text-muted">
-          Live demo — toggle offline, queue movements, watch conflict resolution
-          <span className="ml-2 font-mono text-xs text-accent">· M5</span>
+        {/* LEAD WITH THE LIVE DEMO (standalone-deployed browser client) */}
+        <div className="mt-10">
+          <LiveDemo />
         </div>
 
         <hr className="mt-12 border-border" />
