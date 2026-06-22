@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Co-founder of Iano, a two-person studio where both founders engineered every build.",
+    "Saif — full-stack engineer and entrepreneur in Nairobi, co-founder of Iano, building web platforms wired into real business operations.",
 };
 
 export default function AboutPage() {
@@ -15,33 +16,90 @@ export default function AboutPage() {
         <Reveal as="section" on="load">
           <header>
             <p className="font-mono text-sm uppercase tracking-widest text-muted">
-              A two-person studio
+              About
             </p>
             <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
-              About
+              Hi, I&rsquo;m Saif.
             </h1>
           </header>
         </Reveal>
-        <div className="mt-10 space-y-6 leading-relaxed">
+
+        <div className="mt-10 space-y-10 leading-relaxed">
           <p className="text-xl leading-snug text-foreground">
-            I&apos;m Seifeldin Ali, co-founder of Iano — a two-person marketing agency.
-            &ldquo;Two-person&rdquo; is the honest framing: there&apos;s no team behind the
-            curtain. Both founders engineered every build on this site, end to end.
+            I am a professional full-stack engineer and entrepreneur based in Nairobi,
+            Kenya. I specialize in building powerful, scalable web platforms that bridge
+            the gap between complex code and real-world operational efficiency. Currently,
+            as the Co-founder of Iano, I&rsquo;ve successfully shipped seven distinct
+            products, ensuring each one is hardwired directly into an active business
+            process to solve concrete problems.
           </p>
-          <p className="text-muted">
-            That scope is the point. The same two people handle the marketing site and the
-            multi-tenant ERP behind it, the React landing page and the offline-first POS,
-            the payment integration and the deploy. Every one of the seven shipped products
-            plugs into a real business process — CRM, ERP, POS, payments, logistics —
-            because a small studio can&apos;t hand the &ldquo;boring&rdquo; operational half
-            to someone else. We build the whole system or it doesn&apos;t ship.
-          </p>
-          <p className="text-muted">
-            The work moved deliberately from client-facing React sites to full-stack Next.js
-            and TypeScript products — picking the right tool as the problems got harder, not
-            collecting frameworks. This site is built on that same stack, in the open, so the
-            claim is something you can read rather than something I assert.
-          </p>
+
+          <section className="space-y-4">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">
+              My Journey &amp; Experience
+            </h2>
+            <p className="text-muted">
+              My path into software engineering is driven by a deep curiosity for how
+              systems work and a desire to build things that create measurable impact. I
+              actively expand my architecture skills&mdash;recently diving into AWS Cloud
+              Practitioner and Cloud Engineer programs&mdash;to ensure the platforms I
+              design are highly available and enterprise-ready.
+            </p>
+            <p className="text-muted">
+              My academic journey began with a foundation in Engineering at IIUM, which
+              instilled a disciplined, problem-solving mindset. From there, I earned a
+              Diploma in Business Information Technology and am currently a fourth-year
+              student at Strathmore University, awaiting my graduation this August with a
+              Bachelor&rsquo;s in Business Information Technology. This progression provided
+              a rigorous foundation in both software architecture and business operations,
+              equipping me with the essential technical skills I rely on daily to build and
+              succeed with Iano.
+            </p>
+            <p className="text-muted">
+              To expand my practical knowledge and gain hands-on industry experience, I
+              also spent time learning and developing within the developers division at
+              CodexSafari. This combination of formal education and applied experience
+              across the engineering stack means I don&rsquo;t just write code; I understand
+              what businesses actually need their software to accomplish.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">
+              Under the Hood
+            </h2>
+            <p className="text-muted">
+              Beyond the code I write for clients, I&rsquo;m deeply passionate about system
+              optimization and security. I spend my downtime exploring cybersecurity
+              concepts&mdash;like network security protocols and web vulnerabilities&mdash;and
+              configuring Arch Linux environments using tools like Hyprland.
+            </p>
+            <p className="text-muted">
+              My pursuit of high performance extends all the way down to the hardware level.
+              Whether I&rsquo;m optimizing a laptop&rsquo;s thermals for peak performance or
+              pushing for the best frame rates in competitive gaming, I bring that same
+              craftsman&rsquo;s mindset to my engineering. I want the systems I build to run
+              faster, smoother, and more securely.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">
+              Let&rsquo;s Connect
+            </h2>
+            <p className="text-muted">
+              I am always looking for the next hard problem to solve. If you&rsquo;re looking
+              for an engineer who understands both the architecture and the business
+              objective,{" "}
+              <Link
+                href="/contact"
+                className="text-accent underline underline-offset-4 transition-opacity hover:opacity-70"
+              >
+                let&rsquo;s talk
+              </Link>
+              .
+            </p>
+          </section>
         </div>
       </article>
     </Container>

@@ -41,7 +41,7 @@ export function Hero() {
         className="relative aspect-[4/5] w-full max-w-xs overflow-hidden border border-border lg:max-w-none"
       >
         <Image
-          src="/portrait.jpg"
+          src="/portrait.jpeg"
           alt="Seifeldin Ali"
           fill
           priority
