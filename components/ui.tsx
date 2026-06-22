@@ -40,6 +40,21 @@ export function SectionLabel({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * A spec-sheet row: mono label in a fixed left gutter, content on the right;
+ * stacks on mobile. Gives reading pages a technical-datasheet rhythm.
+ */
+export function SpecRow({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <section className="grid gap-x-8 gap-y-3 sm:grid-cols-[7rem_1fr]">
+      <h2 className="font-mono text-xs uppercase tracking-widest text-muted sm:pt-1">
+        {label}
+      </h2>
+      <div>{children}</div>
+    </section>
+  );
+}
+
 /** A single tag in a stack/tech row. Renders as an <li>; wrap in a flex <ul>. */
 export function Chip({ children }: { children: ReactNode }) {
   return (

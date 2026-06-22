@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { engineering } from "@/lib/projects";
-import { Container, SectionLabel } from "@/components/ui";
+import { Container, SpecRow } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Engineering — inventory-ledger",
@@ -12,38 +12,43 @@ export default function EngineeringPage() {
   return (
     <Container width="prose">
       <article className="py-24">
-        <h1 className="font-serif text-5xl font-semibold tracking-tight">
-          {engineering.name}
-        </h1>
-        <p className="mt-4 text-lg text-muted">{engineering.intro}</p>
+        <header>
+          <p className="font-mono text-sm uppercase tracking-widest text-muted">
+            Engineering · public artifact
+          </p>
+          <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
+            {engineering.name}
+          </h1>
+          <p className="mt-5 max-w-2xl text-xl leading-snug">{engineering.intro}</p>
+        </header>
 
         {/* LEAD WITH THE LIVE DEMO (standalone-deployed browser client) — wired in M5 */}
-        <div className="mt-10 rounded border border-dashed border-border px-4 py-8 text-center text-sm text-muted">
-          [Live demo — toggle offline, queue movements, watch conflict resolution · M5]
+        <div className="mt-10 flex min-h-40 items-center justify-center border border-dashed border-border px-4 text-center text-sm text-muted">
+          Live demo — toggle offline, queue movements, watch conflict resolution
+          <span className="ml-2 font-mono text-xs text-accent">· M5</span>
         </div>
 
-        <div className="mt-12 space-y-12">
-          <section>
-            <SectionLabel>How it works</SectionLabel>
-            <p className="mt-4">{engineering.architectureSummary}</p>
-          </section>
+        <hr className="mt-12 border-border" />
 
-          <section>
-            <SectionLabel>Conflicts &amp; overdraw</SectionLabel>
-            <p className="mt-4">{engineering.conflictNote}</p>
-          </section>
+        <div className="mt-12 space-y-14">
+          <SpecRow label="How it works">
+            <p className="leading-relaxed">{engineering.architectureSummary}</p>
+          </SpecRow>
 
-          <section>
-            <SectionLabel>Known trade-offs</SectionLabel>
-            <p className="mt-4">{engineering.tradeOffs}</p>
-          </section>
+          <SpecRow label="Conflicts & overdraw">
+            <p className="leading-relaxed">{engineering.conflictNote}</p>
+          </SpecRow>
+
+          <SpecRow label="Trade-offs">
+            <p className="leading-relaxed">{engineering.tradeOffs}</p>
+          </SpecRow>
         </div>
 
         <a
           href={engineering.repoUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-12 inline-block text-sm text-accent underline"
+          className="mt-14 inline-block text-sm text-accent underline underline-offset-4"
         >
           Read the code on GitHub ↗
         </a>
