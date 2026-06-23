@@ -15,17 +15,17 @@ export type ProjectImage = {
   caption?: string;
 };
 
-// Cover thumbnail (01-cover.png) — the card thumbnail and case-study lead image.
+// Cover thumbnail (01-cover.webp) — the card thumbnail and case-study lead image.
 const cover = (slug: string, name: string): ProjectImage => ({
-  src: `/work/${slug}/01-cover.png`,
+  src: `/work/${slug}/01-cover.webp`,
   alt: `${name} product screenshot`,
 });
 
-// Gallery shots (02.png … NN.png), in numeric order.
+// Gallery shots (02.webp … NN.webp), in numeric order.
 const gallery = (slug: string, count: number, name: string): ProjectImage[] =>
   Array.from({ length: count }, (_, i) => {
     const n = String(i + 2).padStart(2, "0");
-    return { src: `/work/${slug}/${n}.png`, alt: `${name} screenshot ${i + 1}` };
+    return { src: `/work/${slug}/${n}.webp`, alt: `${name} screenshot ${i + 1}` };
   });
 
 export type DeepProject = {

@@ -153,11 +153,11 @@ export function Hero() {
           className="glass glow-accent relative aspect-4/5 w-full max-w-xs overflow-hidden rounded-2xl p-1.5 lg:max-w-none"
         >
           <Image
-            src="/portrait.jpeg"
+            src="/portrait.webp"
             alt="Seifeldin Ali"
             fill
             priority
-            quality={90}
+            quality={95}
             sizes="(min-width: 1024px) 20rem, 100vw"
             className="rounded-xl object-cover"
           />
