@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Atmosphere } from "@/components/Atmosphere";
+import { Analytics } from "@vercel/analytics/next";
 import { contact } from "@/lib/contact";
 
 // Display — a characterful architectural grotesque. Variable: full weight +
@@ -141,6 +142,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
