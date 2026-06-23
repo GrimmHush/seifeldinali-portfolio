@@ -19,8 +19,8 @@ The architecture is documented in [`CLAUDE.md`](./CLAUDE.md).
 - **Single typed content source** (`lib/projects.ts`) drives routing, the work grids,
   case-study bodies, and per-page metadata.
 - **Per-page metadata + generated OG images** (`next/og`) — proper SSG meta on every route.
-- **`/engineering`** embeds a live, standalone offline-first demo of
-  [inventory-ledger](https://github.com/GrimmHush/inventory-ledger) — shown, not just linked.
+- **`/demonstration`** embeds a [live, standalone offline-first demo](https://inventory-ledger-demo.vercel.app)
+  of [inventory-ledger](https://github.com/GrimmHush/inventory-ledger) — shown, not just linked.
 - **Accessibility floor:** semantic HTML, skip-to-content, visible focus, `prefers-reduced-
   motion` respected, motion that degrades visible without JavaScript.
 
@@ -37,7 +37,7 @@ npm run test:e2e     # Playwright smoke test (run npx playwright install first)
 
 ## Deploy
 
-Hosted on Vercel, which detects Next.js with zero config (`npm run build`, Node 22 via
+Hosted on Vercel, which detects Next.js with zero config (`npm run build`, Node 24 via
 `engines.node`). Pushes to `main` trigger a deploy.
 
 The contact form posts to `app/api/contact/route.ts`, which emails submissions via
