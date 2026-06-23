@@ -25,8 +25,10 @@ artifact: the source is meant to be read by reviewers, so it stays small and leg
 - `demonstration/page.tsx` — the inventory-ledger showcase. Leads with the embedded live demo
   (`LiveDemo`), then plain-language architecture, then the repo link.
 - `contact/page.tsx` — contact page: intro + `ContactForm`; direct channels live in the footer.
-- `api/contact/route.ts` — contact-form backend: validates + honeypot-filters, emails via Resend
-  (`RESEND_API_KEY` / optional `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL`; see `.env.example`).
+- `api/contact/route.ts` — contact-form backend: Zod-validates, honeypot-filters, best-effort
+  in-memory rate-limits, then emails via Resend with `replyTo` set to the visitor (so a reply
+  goes straight back). Env: `RESEND_API_KEY` / optional `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL`
+  (see `.env.example`).
 - `about/page.tsx` — two-person-studio framing.
 - `layout.tsx` — shell + fonts + metadata; skip-to-content link, degrade-visible `<noscript>`
   fallback for motion. `template.tsx` — subtle route-transition fade.
