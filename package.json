@@ -2,6 +2,9 @@
   "name": "seifeldinali-portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -17,7 +20,6 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5",
     "@playwright/test": "^1.61.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

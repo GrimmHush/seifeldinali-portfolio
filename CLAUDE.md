@@ -8,7 +8,7 @@ artifact: the source is meant to be read by reviewers, so it stays small and leg
 - **TypeScript (strict)**.
 - **Tailwind CSS v4** (CSS-first `@theme` tokens, no JS config).
 - **Framer Motion** (`motion` v12) for entrance/scroll orchestration.
-- **Netlify** via `@netlify/plugin-nextjs`. Personal domain: `seifeldinali.com`.
+- **Vercel** — zero-config Next.js hosting. Personal domain: `seifeldinali.com`.
 
 ## Content
 - `lib/projects.ts` — single typed content source: deep + compact projects, the stack-

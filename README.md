@@ -12,7 +12,7 @@ The architecture is documented in [`CLAUDE.md`](./CLAUDE.md).
 - **TypeScript** (strict).
 - **Tailwind CSS v4** — CSS-first `@theme` design tokens.
 - **Framer Motion** (`motion`) — restrained entrance/scroll motion, reduced-motion aware.
-- **Netlify** via `@netlify/plugin-nextjs`.
+- **Vercel** — zero-config Next.js hosting.
 
 ## Highlights
 
@@ -37,8 +37,8 @@ npm run test:e2e     # Playwright smoke test (run npx playwright install first)
 
 ## Deploy
 
-Hosted on Netlify. Build settings come from `netlify.toml`; the official Next.js runtime
-plugin is applied automatically. Pushes to `main` trigger a deploy.
+Hosted on Vercel, which detects Next.js with zero config (`npm run build`, Node 22 via
+`engines.node`). Pushes to `main` trigger a deploy.
 
 ## Project structure
 
