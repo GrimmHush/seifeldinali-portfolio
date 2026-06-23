@@ -10,9 +10,10 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 const FORM_NAME = "contact";
 
-const labelClass = "font-mono text-xs uppercase tracking-widest text-muted";
+const labelClass =
+  "font-display text-xs font-bold uppercase tracking-[0.12em] text-muted";
 const fieldClass =
-  "mt-2 w-full rounded border border-border bg-background px-3 py-2 text-foreground placeholder:text-muted";
+  "mt-2 w-full rounded-lg border border-border bg-background/40 px-3.5 py-2.5 text-foreground placeholder:text-muted backdrop-blur-sm transition-colors focus:border-accent";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -45,7 +46,7 @@ export function ContactForm() {
     return (
       <div
         aria-live="polite"
-        className="mt-10 rounded border border-border p-6 leading-relaxed"
+        className="glass glow-accent mt-10 rounded-2xl p-6 leading-relaxed"
       >
         <p className="text-xl text-foreground">Thanks — your message is on its way.</p>
         <p className="mt-2 text-muted">
@@ -61,7 +62,7 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       data-netlify="true"
       netlify-honeypot="bot-field"
-      className="mt-10 space-y-6"
+      className="glass mt-10 space-y-6 rounded-2xl p-6 sm:p-8"
     >
       {/* Netlify needs form-name in the payload to route the submission. */}
       <input type="hidden" name="form-name" value={FORM_NAME} />
@@ -117,7 +118,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="rounded bg-accent px-5 py-2.5 text-sm font-medium text-accent-contrast transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-contrast transition-shadow hover:glow-accent disabled:opacity-60"
         >
           {status === "submitting" ? "Sending…" : "Send message"}
         </button>

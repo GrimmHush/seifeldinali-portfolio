@@ -33,18 +33,25 @@ artifact: the source is meant to be read by reviewers, so it stays small and leg
 - `ui.tsx` — layout primitives: `Container`, `Section`, `SectionLabel`, `SpecRow`, `Chip`.
 - `Nav.tsx`, `Footer.tsx` — shell. Footer is where the contact bar (email / phone /
   WhatsApp / LinkedIn + vCard + Iano profile-card link) will land.
-- `Hero.tsx` — landing hero with a staggered load entrance.
-- `StackTimeline.tsx` — the signature: the 2020→2026 axis (line draws, eras stagger in).
-- `Reveal.tsx` — reusable entrance primitive (opacity + translateY, `useReducedMotion`-aware).
+- `Hero.tsx` — landing hero with a staggered load entrance + kinetic headline.
+- `StackTimeline.tsx` — the signature: the 2020→2026 axis (line draws, present node glows).
+- `Reveal.tsx` — reusable entrance primitive (opacity/translate/blur variants, `useReducedMotion`-aware).
+- `Atmosphere.tsx` — the fixed dimensional backdrop (gradient mesh + grain), mounted once in layout.
+- `KineticText.tsx` — word-by-word heading reveal; SSR-readable + degrade-visible.
+- `Magnetic.tsx` — cursor-magnetic wrapper (motion springs, no extra dep).
+- `Spotlight.tsx` — glass surface with a cursor-tracked highlight; the `Card` primitive builds on it.
 - `LiveDemo.tsx` — embeds the standalone inventory-ledger client, with a fallback card.
 
-## Design system
-- Tokens live in `app/globals.css` via Tailwind `@theme`: `background/foreground/muted/
-  border/accent` (+ light/dark at the token layer). Reference tokens (`text-muted`,
-  `border-border`, `text-accent`) — never raw colours or `opacity-*`.
-- Typography: Fraunces (serif display, `font-serif`) · Geist (sans body) · Geist Mono (labels).
-- Motion: animate transform/opacity only (60fps, no layout shift), once-fired, reduced-motion
-  honoured everywhere. Entrance elements carry `data-reveal` so they degrade visible without JS.
+## Design system — "Dark Dimensional" (adaptive light/dark)
+- Tokens live in `app/globals.css` via Tailwind `@theme`: core `background/foreground/muted/
+  border/accent/accent-2/accent-contrast` + dimensional `surface/surface-elevated/glow/mesh-*`
+  (+ light/dark at the token layer). Reference tokens (`text-muted`, `border-border`, `text-accent`,
+  `bg-surface`) and the `glass` / `glow-accent` / `spotlight` utilities — never raw colours or `opacity-*`.
+- Typography: Bricolage Grotesque (display, `font-display`) · Hanken Grotesk (sans body) ·
+  JetBrains Mono (labels). Fluid `text-hero/display/title` sizes via `clamp()`.
+- Motion: animate transform/opacity (+ blur) only (60fps, no layout shift), once-fired, reduced-motion
+  honoured everywhere (mesh drift, kinetic text, magnetic all go static). Entrance elements carry
+  `data-reveal` so they degrade visible without JS. No runtime deps beyond `motion`.
 
 ## Conventions
 - Content lives in `lib/`, never hard-coded in pages.

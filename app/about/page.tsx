@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
+import { KineticText } from "@/components/KineticText";
 
 export const metadata: Metadata = {
   title: "About",
@@ -15,12 +16,14 @@ export default function AboutPage() {
       <article className="py-24">
         <Reveal as="section" on="load">
           <header>
-            <p className="font-mono text-sm uppercase tracking-widest text-muted">
+            <p className="font-display text-sm font-bold uppercase tracking-[0.15em] text-muted">
               About
             </p>
-            <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
-              Hi, I&rsquo;m Saif.
-            </h1>
+            <KineticText
+              as="h1"
+              text="Hi, I’m Saif."
+              className="mt-4 font-display text-display font-semibold"
+            />
           </header>
         </Reveal>
 
@@ -35,7 +38,7 @@ export default function AboutPage() {
           </p>
 
           <section className="space-y-4">
-            <h2 className="font-serif text-2xl font-semibold tracking-tight">
+            <h2 className="font-display text-title font-semibold">
               My Journey &amp; Experience
             </h2>
             <p className="text-muted">
@@ -65,7 +68,7 @@ export default function AboutPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="font-serif text-2xl font-semibold tracking-tight">
+            <h2 className="font-display text-title font-semibold">
               Under the Hood
             </h2>
             <p className="text-muted">
@@ -84,7 +87,7 @@ export default function AboutPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="font-serif text-2xl font-semibold tracking-tight">
+            <h2 className="font-display text-title font-semibold">
               Let&rsquo;s Connect
             </h2>
             <p className="text-muted">
