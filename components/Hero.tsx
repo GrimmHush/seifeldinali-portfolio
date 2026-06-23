@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "motion/react";
@@ -44,22 +45,21 @@ export function Hero() {
   return (
     <motion.section className="flex flex-col py-24 sm:py-32" {...motionProps}>
       {/* THESIS — three statements, centered, side by side, each glowing
-          white on hover. */}
-      <motion.h1
-        variants={g}
-        className="flex flex-wrap justify-center gap-x-8 gap-y-1 text-center font-display text-hero font-semibold"
-      >
-        {statements.map((s) => (
-          <motion.span
+          white on hover. The LCP element: its entrance is CSS-driven (see
+          [data-hero] in globals.css) so it paints at first contentful paint
+          rather than waiting for Framer to hydrate. */}
+      <h1 className="flex flex-wrap justify-center gap-x-8 gap-y-1 text-center font-display text-hero font-semibold">
+        {statements.map((s, i) => (
+          <span
             key={s}
-            data-reveal
-            variants={v}
+            data-hero
+            style={{ "--hero-delay": `${0.05 + i * 0.08}s` } as CSSProperties}
             className="cursor-default transition-all duration-300 hover:[text-shadow:0_0_34px_rgba(255,255,255,0.75)]"
           >
             {s}
-          </motion.span>
+          </span>
         ))}
-      </motion.h1>
+      </h1>
 
       {/* EYEBROW */}
       <motion.p
@@ -146,10 +146,12 @@ export function Hero() {
         </motion.div>
 
         {/* PORTRAIT — sits to the right of the text on desktop; natural 4/5
-            aspect, kept crisp (no upscaling). */}
-        <motion.div
-          data-reveal
-          variants={v}
+            aspect, kept crisp (no upscaling). CSS-driven entrance (not Framer)
+            so it can be the LCP element on narrow viewports without waiting
+            for hydration. */}
+        <div
+          data-hero
+          style={{ "--hero-delay": "0.3s" } as CSSProperties}
           className="glass glow-accent relative aspect-4/5 w-full max-w-xs overflow-hidden rounded-2xl p-1.5 lg:max-w-none"
         >
           <Image
@@ -161,7 +163,7 @@ export function Hero() {
             sizes="(min-width: 1024px) 20rem, 100vw"
             className="rounded-xl object-cover"
           />
-        </motion.div>
+        </div>
       </motion.div>
     </motion.section>
   );
