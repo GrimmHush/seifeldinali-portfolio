@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Send Seifeldin Ali a message, or reach out directly by email, phone, WhatsApp, or LinkedIn.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

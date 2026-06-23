@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Saif, a full-stack engineer and entrepreneur in Nairobi, co-founder of Iano, building web platforms wired into real business operations.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

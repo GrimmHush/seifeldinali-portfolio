@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Demonstration: inventory-ledger",
   description:
     "A public, runnable offline-first inventory sync engine: append-only movement log, conflict resolution, and a browser client you can take offline.",
+  alternates: { canonical: "/demonstration" },
 };
 
 export default function DemonstrationPage() {
