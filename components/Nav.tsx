@@ -107,8 +107,9 @@ export function Nav() {
               type="button"
               aria-haspopup="menu"
               aria-expanded={open}
+              aria-current={onProjects ? "page" : undefined}
               onClick={() => setOpen((v) => !v)}
-              className={`flex items-center gap-1 transition-colors hover:text-foreground ${
+              className={`relative flex items-center gap-1 transition-colors hover:text-accent ${
                 onProjects ? "text-foreground" : ""
               }`}
             >
@@ -123,6 +124,9 @@ export function Nav() {
               >
                 <path d="M3 4.5 6 7.5 9 4.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
+              {onProjects && (
+                <span aria-hidden className="absolute -bottom-1.5 left-0 h-px w-full bg-accent" />
+              )}
             </button>
             <AnimatePresence>
               {open && (
@@ -258,7 +262,7 @@ function NavLink({ href, label, active }: { href: string; label: string; active:
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`relative transition-colors hover:text-foreground ${
+      className={`relative transition-colors hover:text-accent ${
         active ? "text-foreground" : ""
       }`}
     >

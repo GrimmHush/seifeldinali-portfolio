@@ -61,7 +61,7 @@ const items: Item[] = [
 
 export function Footer() {
   return (
-    <footer id="contact" className="mt-32 border-t border-border py-20">
+    <footer id="contact" className="mt-20 border-t border-border py-8">
       <Container className="flex flex-col items-center text-center">
         <KineticText
           as="h2"
@@ -69,11 +69,11 @@ export function Footer() {
           text="Get in touch"
           className="font-display text-display font-semibold"
         />
-        <p className="mt-4 max-w-md text-muted">
+        <p className="mt-3 max-w-md text-muted">
           Building something that needs the whole system handled? Let&apos;s talk.
         </p>
 
-        <ul className="mt-8 flex flex-wrap justify-center gap-x-3 gap-y-2 text-sm">
+        <ul className="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-2 text-sm">
           {items.map((item, i) => (
             <li key={i}>
               {"href" in item ? (
@@ -101,7 +101,7 @@ export function Footer() {
           ))}
         </ul>
 
-        <p className="mt-14 text-sm text-muted">
+        <p className="mt-6 text-sm text-muted">
           © {new Date().getFullYear()} {contact.name}
         </p>
       </Container>
