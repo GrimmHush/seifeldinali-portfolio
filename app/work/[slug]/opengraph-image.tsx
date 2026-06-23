@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { OgFrame, OG_SIZE } from "@/lib/og";
 import { deepProjects, compactProjects, getProject } from "@/lib/projects";
 
-export const alt = "Case study — Seifeldin Ali";
+export const alt = "Case study by Seifeldin Ali";
 export const size = OG_SIZE;
 export const contentType = "image/png";
 

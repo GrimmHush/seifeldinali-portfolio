@@ -48,7 +48,7 @@ export function ContactForm() {
         aria-live="polite"
         className="glass glow-accent mt-10 rounded-2xl p-6 leading-relaxed"
       >
-        <p className="text-xl text-foreground">Thanks — your message is on its way.</p>
+        <p className="text-xl text-foreground">Thanks, your message is on its way.</p>
         <p className="mt-2 text-muted">
           I read everything that comes in and will get back to you shortly.
         </p>
@@ -125,7 +125,7 @@ export function ContactForm() {
         <p aria-live="polite" className="text-sm text-muted">
           {status === "error" && (
             <span className="text-foreground">
-              Something went wrong — please email me directly.
+              Something went wrong. Please email me directly.
             </span>
           )}
         </p>

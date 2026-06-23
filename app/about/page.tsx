@@ -7,7 +7,7 @@ import { KineticText } from "@/components/KineticText";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Saif — full-stack engineer and entrepreneur in Nairobi, co-founder of Iano, building web platforms wired into real business operations.",
+    "Saif, a full-stack engineer and entrepreneur in Nairobi, co-founder of Iano, building web platforms wired into real business operations.",
 };
 
 export default function AboutPage() {
@@ -44,8 +44,8 @@ export default function AboutPage() {
             <p className="text-muted">
               My path into software engineering is driven by a deep curiosity for how
               systems work and a desire to build things that create measurable impact. I
-              actively expand my architecture skills&mdash;recently diving into AWS Cloud
-              Practitioner and Cloud Engineer programs&mdash;to ensure the platforms I
+              actively expand my architecture skills, recently diving into AWS Cloud
+              Practitioner and Cloud Engineer programs to ensure the platforms I
               design are highly available and enterprise-ready.
             </p>
             <p className="text-muted">
@@ -74,7 +74,7 @@ export default function AboutPage() {
             <p className="text-muted">
               Beyond the code I write for clients, I&rsquo;m deeply passionate about system
               optimization and security. I spend my downtime exploring cybersecurity
-              concepts&mdash;like network security protocols and web vulnerabilities&mdash;and
+              concepts like network security protocols and web vulnerabilities and
               configuring Arch Linux environments using tools like Hyprland.
             </p>
             <p className="text-muted">

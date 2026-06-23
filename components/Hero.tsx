@@ -135,8 +135,13 @@ export function Hero() {
             </Magnetic>
           </motion.div>
 
-          <motion.p data-reveal variants={v} className="mt-auto pt-8 text-muted">
-            — Saif
+          <motion.p
+            data-reveal
+            variants={v}
+            aria-label="- Saif"
+            className="mt-auto pt-8 font-signature text-3xl leading-none text-foreground"
+          >
+            - Saif
           </motion.p>
         </motion.div>
 

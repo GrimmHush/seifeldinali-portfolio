@@ -6,7 +6,7 @@ import { KineticText } from "@/components/KineticText";
 import { LiveDemo } from "@/components/LiveDemo";
 
 export const metadata: Metadata = {
-  title: "Demonstration — inventory-ledger",
+  title: "Demonstration: inventory-ledger",
   description:
     "A public, runnable offline-first inventory sync engine: append-only movement log, conflict resolution, and a browser client you can take offline.",
 };

@@ -18,14 +18,14 @@ export type ProjectImage = {
 // Cover thumbnail (01-cover.png) — the card thumbnail and case-study lead image.
 const cover = (slug: string, name: string): ProjectImage => ({
   src: `/work/${slug}/01-cover.png`,
-  alt: `${name} — product screenshot`,
+  alt: `${name} product screenshot`,
 });
 
 // Gallery shots (02.png … NN.png), in numeric order.
 const gallery = (slug: string, count: number, name: string): ProjectImage[] =>
   Array.from({ length: count }, (_, i) => {
     const n = String(i + 2).padStart(2, "0");
-    return { src: `/work/${slug}/${n}.png`, alt: `${name} — screenshot ${i + 1}` };
+    return { src: `/work/${slug}/${n}.png`, alt: `${name} screenshot ${i + 1}` };
   });
 
 export type DeepProject = {
@@ -71,7 +71,7 @@ export type StackEra = {
 
 // Identical across every project — stated once, referenced per project.
 export const ROLE_TEAM =
-  "Iano — a two-person marketing agency I co-founded. Both founders engineered the build.";
+  "Iano, a two-person marketing agency I co-founded. Both founders engineered the build.";
 
 export const deepProjects: DeepProject[] = [
   {
@@ -81,15 +81,15 @@ export const deepProjects: DeepProject[] = [
       "Marketing + integrated e-commerce site for a Direct Air Capture climate-tech company.",
     client: "Octavia Carbon",
     year: "2025",
-    status: "Built & handed off — live site has since evolved independently",
+    status: "Built and handed off; the live site has since evolved independently",
     liveUrl: "https://octaviacarbon.com",
     summary:
-      "A production marketing-plus-commerce website for Octavia Carbon, a Direct Air Capture company working on carbon removal. The build pairs a Next.js 14 front end with a headless commerce and CRM stack — Shopify Storefront API for e-commerce, HubSpot for lead capture, and SendGrid for email — deployed by Iano on a DigitalOcean server.",
+      "A production marketing-plus-commerce website for Octavia Carbon, a Direct Air Capture company working on carbon removal. The build pairs a Next.js 14 front end with a headless commerce and CRM stack (Shopify Storefront API for e-commerce, HubSpot for lead capture, and SendGrid for email), deployed by Iano on a DigitalOcean server.",
     context:
-      "Octavia Carbon needed a public-facing site that could both explain its DAC technology to a non-technical audience and support real transactions — selling and capturing interest in its carbon-removal services — rather than a static brochure site.",
+      "Octavia Carbon needed a public-facing site that could both explain its DAC technology to a non-technical audience and support real transactions, selling and capturing interest in its carbon-removal services, rather than a static brochure site.",
     roleTeam: ROLE_TEAM,
     outcome:
-      "Concrete scope — a single site that combines marketing content, integrated e-commerce (Shopify), CRM-connected contact and newsletter forms (HubSpot, SendGrid), and analytics, built by Iano.",
+      "Concrete scope: a single site that combines marketing content, integrated e-commerce (Shopify), CRM-connected contact and newsletter forms (HubSpot, SendGrid), and analytics, built by Iano.",
     stack: [
       "Next.js 14",
       "Tailwind CSS",
@@ -126,17 +126,17 @@ export const deepProjects: DeepProject[] = [
     name: "MERX",
     positioning:
       "Self-hosted, multi-tenant ERP platform with pluggable Accounting, Inventory, and Supply modules.",
-    client: "MERX Systems — an Iano product",
-    year: "2026 — actively developed",
+    client: "MERX Systems, an Iano product",
+    year: "2026, actively developed",
     status: "Built + maintained by Iano",
     liveUrl: "https://merx.systems",
     summary:
-      "MERX is a self-hosted, multi-tenant ERP platform built as a Turborepo monorepo on Next.js 15 and Postgres. It ships three first-party business modules — Accounting, Inventory, and Supply — on top of a pluggable module system, so new capabilities self-register into the shell without touching the core. Tenant isolation, role-based permissions, an audit log, and a branded PDF document engine are built into the platform layer.",
+      "MERX is a self-hosted, multi-tenant ERP platform built as a Turborepo monorepo on Next.js 15 and Postgres. It ships three first-party business modules (Accounting, Inventory, and Supply) on top of a pluggable module system, so new capabilities self-register into the shell without touching the core. Tenant isolation, role-based permissions, an audit log, and a branded PDF document engine are built into the platform layer.",
     context:
-      "Businesses needed an ERP they could run themselves — covering accounting, inventory, and supply — without SaaS lock-in, and extensible enough to add their own modules rather than being boxed into a fixed feature set.",
+      "Businesses needed an ERP they could run themselves, covering accounting, inventory, and supply, without SaaS lock-in, and extensible enough to add their own modules rather than being boxed into a fixed feature set.",
     roleTeam: ROLE_TEAM,
     outcome:
-      "Concrete scope — a multi-tenant ERP with three working business modules, strict TypeScript, RBAC, audit logging, a document/PDF engine, and a full self-hostable production stack (Docker + Caddy auto-HTTPS), plus unit and end-to-end test suites (Vitest + Playwright).",
+      "Concrete scope: a multi-tenant ERP with three working business modules, strict TypeScript, RBAC, audit logging, a document/PDF engine, and a full self-hostable production stack (Docker + Caddy auto-HTTPS), plus unit and end-to-end test suites (Vitest + Playwright).",
     stack: [
       "Next.js 15 (App Router, RSC, Server Actions)",
       "TypeScript (strict)",
@@ -154,8 +154,8 @@ export const deepProjects: DeepProject[] = [
       "Vitest + Playwright",
     ],
     keyDecisions: [
-      "Chose a pluggable module registry over a monolith — each module ships a manifest ({ key, nav, permissions, templates, hooks }) and the Next.js shell auto-mounts navigation, routes, permissions, and PDF templates at boot, so adding a module is `cp` + manifest, not core surgery.",
-      "Chose AsyncLocalStorage-based tenant isolation over ad-hoc filtering — a TenantContext is set per request and every query is scoped by org_id via requireOrgId(), making isolation a platform guarantee rather than a per-query discipline.",
+      "Chose a pluggable module registry over a monolith: each module ships a manifest ({ key, nav, permissions, templates, hooks }) and the Next.js shell auto-mounts navigation, routes, permissions, and PDF templates at boot, so adding a module is `cp` + manifest, not core surgery.",
+      "Chose AsyncLocalStorage-based tenant isolation over ad-hoc filtering: a TenantContext is set per request and every query is scoped by org_id via requireOrgId(), making isolation a platform guarantee rather than a per-query discipline.",
       "Chose Drizzle ORM over a heavier ORM for type-safe, migration-first schema work with drizzle-kit.",
       "Chose self-hosted Docker + Caddy over a managed SaaS deploy to deliver the “run it yourself, auto-HTTPS on your own domain” promise.",
     ],
@@ -164,7 +164,7 @@ export const deepProjects: DeepProject[] = [
     challenges: [
       {
         heading: "Guaranteeing tenant isolation",
-        body: "Across every query without leaking data — solved with a request-scoped TenantContext and mandatory org_id scoping enforced in @merx/core.",
+        body: "Across every query, without leaking data, this is solved with a request-scoped TenantContext and mandatory org_id scoping enforced in @merx/core.",
       },
       {
         heading: "Making the platform genuinely extensible",
@@ -183,17 +183,17 @@ export const deepProjects: DeepProject[] = [
     name: "Esto",
     positioning:
       "Multi-tenant restaurant POS, inventory, and digital-menu platform spanning web and a native Android client.",
-    client: "Esto — an Iano product",
-    year: "2025 — actively developed",
+    client: "Esto, an Iano product",
+    year: "2025, actively developed",
     status: "Built + maintained by Iano · 219+ commits, v1.0.1 released",
     liveUrl: "https://esto.solutions",
     summary:
-      "Esto is a multi-tenant restaurant platform that goes well beyond a digital menu — it includes point-of-sale, inventory management, an analytics dashboard, shift handling, and a native Android client with a cloud-mode printing pipeline. The POS is offline-first — it keeps taking orders through a connection drop and reconciles on reconnect. Tenants are served from their own subdomains, and branding is JSON-configurable so new clients ship without forking the codebase.",
+      "Esto is a multi-tenant restaurant platform that goes well beyond a digital menu: it includes point-of-sale, inventory management, an analytics dashboard, shift handling, and a native Android client with a cloud-mode printing pipeline. The POS is offline-first, so it keeps taking orders through a connection drop and reconciles on reconnect. Tenants are served from their own subdomains, and branding is JSON-configurable so new clients ship without forking the codebase.",
     context:
-      "Restaurants needed more than an online menu — they needed an operational system (ordering, POS, inventory, printing, reporting) that could be stood up quickly per venue, in multiple languages, without rebuilding for each client.",
+      "Restaurants needed more than an online menu; they needed an operational system (ordering, POS, inventory, printing, reporting) that could be stood up quickly per venue, in multiple languages, without rebuilding for each client.",
     roleTeam: ROLE_TEAM,
     outcome:
-      "Concrete scope and maturity — a production multi-tenant system (TypeScript ~97%) with a tagged v1.0.1 release, a native Android client, cloud printing, multi-currency and configurable tax, and a sustained commit history reflecting enterprise hardening.",
+      "Concrete scope and maturity: a production multi-tenant system (TypeScript ~97%) with a tagged v1.0.1 release, a native Android client, cloud printing, multi-currency and configurable tax, and a sustained commit history reflecting enterprise hardening.",
     stack: [
       "Next.js 14",
       "TypeScript",
@@ -214,7 +214,7 @@ export const deepProjects: DeepProject[] = [
     challenges: [
       {
         heading: "Offline-first POS reliability",
-        body: "A venue can't stop taking orders when its connection drops, so order writes queue on the client and reconcile on reconnect rather than blocking on the network. Esto's source is private, but the same class of offline-sync engineering is demonstrated end-to-end in a public, runnable proof-of-concept — inventory-ledger — an append-only movement log as the source of truth, with IndexedDB queuing, crash recovery, and merge-time conflict resolution.",
+        body: "A venue can't stop taking orders when its connection drops, so order writes queue on the client and reconcile on reconnect rather than blocking on the network. Esto's source is private, but the same class of offline-sync engineering is demonstrated end-to-end in a public, runnable proof-of-concept called inventory-ledger: an append-only movement log as the source of truth, with IndexedDB queuing, crash recovery, and merge-time conflict resolution.",
       },
       {
         heading: "Shift-close reliability",
@@ -237,18 +237,18 @@ export const deepProjects: DeepProject[] = [
     slug: "amana",
     name: "Amana",
     positioning:
-      "Three-sided delivery logistics platform — REST API, web dashboard, and a native rider app in one monorepo.",
-    client: "Amana — Ghost Burgers",
-    year: "2025 — actively developed",
+      "Three-sided delivery logistics platform: a REST API, web dashboard, and native rider app in one monorepo.",
+    client: "Amana for Ghost Burgers",
+    year: "2025, actively developed",
     status: "Built + maintained by Iano",
     liveUrl: "https://amana.ke",
     summary:
-      "Amana is a three-sided delivery logistics platform — restaurants, riders, and customers — delivered as a single monorepo with a Node.js/Express API, a Next.js admin dashboard, and a React Native (Expo) rider app. It runs real-time order and rider tracking over WebSockets, takes payments through M-Pesa, and handles routing via Google Maps, all deployable as a containerized stack.",
+      "Amana is a three-sided delivery logistics platform connecting restaurants, riders, and customers, delivered as a single monorepo with a Node.js/Express API, a Next.js admin dashboard, and a React Native (Expo) rider app. It runs real-time order and rider tracking over WebSockets, takes payments through M-Pesa, and handles routing via Google Maps, all deployable as a containerized stack.",
     context:
-      "A delivery operation needed one connected system covering order intake, dispatch, live rider tracking, payments, and admin oversight — instead of stitching together separate restaurant, rider, and back-office tools.",
+      "A delivery operation needed one connected system covering order intake, dispatch, live rider tracking, payments, and admin oversight, instead of stitching together separate restaurant, rider, and back-office tools.",
     roleTeam: ROLE_TEAM,
     outcome:
-      "Concrete scope — a production-shaped monorepo spanning three runtimes (Express API, Next.js dashboard, React Native rider app) with real-time tracking, M-Pesa payments, OTP auth, role-scoped APIs, and a full deploy story (Docker, PM2, Nginx, EAS builds).",
+      "Concrete scope: a production-shaped monorepo spanning three runtimes (Express API, Next.js dashboard, React Native rider app) with real-time tracking, M-Pesa payments, OTP auth, role-scoped APIs, and a full deploy story (Docker, PM2, Nginx, EAS builds).",
     stack: [
       "Express",
       "Socket.IO",
@@ -277,7 +277,7 @@ export const deepProjects: DeepProject[] = [
       "Chose a native React Native rider app over a mobile web view for reliable background location, notifications, and on-the-road performance.",
     ],
     architecture:
-      "Three apps under `apps/` — an Express REST + WebSocket API (`config`, `middleware`, `models`, `routes`, `services`, `socket`, scheduled `jobs`), a Next.js admin dashboard, and an Expo rider app (Zustand stores, location/notification/socket services) — plus shared `packages/`. MongoDB is the primary store with Redis for caching; real-time events flow through Socket.IO; payments via M-Pesa STK-push with a callback endpoint; geocoding/directions via Google Maps; media via Cloudinary; JWT access/refresh auth with OTP verification. Deploy: API on PM2 + Nginx, dashboard via Docker, mobile via EAS build/submit.",
+      "Three apps sit under `apps/`: an Express REST + WebSocket API (`config`, `middleware`, `models`, `routes`, `services`, `socket`, scheduled `jobs`), a Next.js admin dashboard, and an Expo rider app (Zustand stores, location/notification/socket services), alongside shared `packages/`. MongoDB is the primary store with Redis for caching; real-time events flow through Socket.IO; payments via M-Pesa STK-push with a callback endpoint; geocoding/directions via Google Maps; media via Cloudinary; JWT access/refresh auth with OTP verification. Deploy: API on PM2 + Nginx, dashboard via Docker, mobile via EAS build/submit.",
     challenges: [
       {
         heading: "Coordinating three runtimes in one codebase",
@@ -341,7 +341,7 @@ export const stackTimeline: StackEra[] = [
     title: "Marketing & enquiry sites",
     stack: ["React (CRA)", "Emotion", "MUI", "Framer Motion"],
     summary:
-      "Client-facing React sites — Iano, Namaa, Sahara Winds — focused on content, motion, and lead capture.",
+      "Client-facing React sites (Iano, Namaa, Sahara Winds) focused on content, motion, and lead capture.",
   },
   {
     period: "→ 2026",
@@ -355,7 +355,7 @@ export const stackTimeline: StackEra[] = [
       "Docker",
     ],
     summary:
-      "Multi-tenant platforms wired into real business operations — ERP, POS, logistics, payments — offline-first where it counts.",
+      "Multi-tenant platforms wired into real business operations (ERP, POS, logistics, payments), offline-first where it counts.",
   },
 ];
 
@@ -367,13 +367,13 @@ export const engineering = {
   // a backend-free, permanently-offline showcase of the offline-first sync engine.
   demoUrl: "https://inventory-ledger-demo.netlify.app",
   intro:
-    "The general-reviewer showcase — shown, not just linked. Client repos are private; this one is public, so the engineering is legible. It's the same class of offline-sync work that keeps Esto's POS taking orders through a connection drop, extracted into a runnable proof.",
+    "The general-reviewer showcase, shown rather than just linked. Client repos are private; this one is public, so the engineering is legible. It's the same class of offline-sync work that keeps Esto's POS taking orders through a connection drop, extracted into a runnable proof.",
   architectureSummary:
-    "Stock is never stored as a number — it's derived by folding an append-only log of movements (in / out / adjust). The ledger is the single source of truth, so every quantity is auditable and every change reversible. The browser client queues movements in IndexedDB while offline and flushes on reconnect, running the same pure merge in the browser that the server runs. Each operation reports its own outcome — applied, superseded, duplicate, or rejected — instead of throwing.",
+    "Stock is never stored as a number; it's derived by folding an append-only log of movements (in / out / adjust). The ledger is the single source of truth, so every quantity is auditable and every change reversible. The browser client queues movements in IndexedDB while offline and flushes on reconnect, running the same pure merge in the browser that the server runs. Each operation reports its own outcome (applied, superseded, duplicate, or rejected) instead of throwing.",
   conflictNote:
-    "Movements are conflict-free: appending to a log has no winner, so concurrent offline edits just merge, deduplicated by movement ID. Item metadata (names, SKUs) uses last-write-wins by updatedAt, reporting stale edits as superseded. Overdraw is caught at merge time — two offline withdrawals that are each valid alone but together overdraw will fold in all known movements, detect the overdraw, and reject the second. On Postgres that guarantee is additionally enforced inside a single Serializable transaction so concurrent withdrawals can't both pass.",
+    "Movements are conflict-free: appending to a log has no winner, so concurrent offline edits just merge, deduplicated by movement ID. Item metadata (names, SKUs) uses last-write-wins by updatedAt, reporting stale edits as superseded. Overdraw is caught at merge time: two offline withdrawals that are each valid alone but together overdraw will fold in all known movements, detect the overdraw, and reject the second. On Postgres that guarantee is additionally enforced inside a single Serializable transaction so concurrent withdrawals can't both pass.",
   tradeOffs:
-    "The project deliberately defers multi-user/organization scoping, multiple warehouse locations, and double-entry accounting — spending its depth on offline-sync safety rather than feature breadth.",
+    "The project deliberately defers multi-user/organization scoping, multiple warehouse locations, and double-entry accounting, spending its depth on offline-sync safety rather than feature breadth.",
 };
 
 export function getDeepProject(slug: string): DeepProject | undefined {

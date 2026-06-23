@@ -98,7 +98,7 @@ export default function Home() {
         <Reveal variant="blur">
           <Card className="mt-10 p-8 sm:p-10">
             <p className="max-w-4xl font-display text-2xl font-semibold leading-snug [text-wrap:normal] sm:text-[1.75rem]">
-              A public, runnable offline-first sync engine — the code my client repos
+              A public, runnable offline-first sync engine: the code my client repos
               can&apos;t show.
             </p>
             <Link

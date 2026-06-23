@@ -180,12 +180,12 @@ export function Nav() {
           <span aria-hidden className="relative block h-4 w-6">
             <span
               className={`absolute left-0 top-1 h-0.5 w-full rounded-full bg-current transition-transform duration-300 ${
-                mobileOpen ? "translate-y-[7px] rotate-45" : ""
+                mobileOpen ? "translate-y-1.75 rotate-45" : ""
               }`}
             />
             <span
               className={`absolute bottom-1 left-0 h-0.5 w-full rounded-full bg-current transition-transform duration-300 ${
-                mobileOpen ? "-translate-y-[7px] -rotate-45" : ""
+                mobileOpen ? "-translate-y-1.75 -rotate-45" : ""
               }`}
             />
           </span>

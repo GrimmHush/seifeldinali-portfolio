@@ -7,7 +7,7 @@ import { ContactForm } from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Send Seifeldin Ali a message — or reach out directly by email, phone, WhatsApp, or LinkedIn.",
+    "Send Seifeldin Ali a message, or reach out directly by email, phone, WhatsApp, or LinkedIn.",
 };
 
 export default function ContactPage() {

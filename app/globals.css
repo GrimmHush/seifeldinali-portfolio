@@ -63,6 +63,7 @@
   --font-sans: var(--font-hanken), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
   --font-display: var(--font-bricolage), var(--font-hanken), system-ui, sans-serif;
+  --font-signature: var(--font-sacramento), "Segoe Script", cursive;
 
   /* Fluid type scale — clamp()-driven, no breakpoint jumps. */
   --text-hero: clamp(2.75rem, 1.4rem + 5.6vw, 5.75rem);

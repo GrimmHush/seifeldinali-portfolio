@@ -10,7 +10,7 @@ export function LiveDemo() {
     return (
       <div className="glass flex min-h-40 flex-col items-center justify-center gap-2 rounded-2xl border-dashed px-6 py-10 text-center">
         <p className="text-sm text-muted">
-          Live demo — toggle offline, queue movements, watch conflict resolution.
+          Live demo: toggle offline, queue movements, watch conflict resolution.
         </p>
         <p className="text-sm text-muted">
           Run it locally with{" "}
@@ -34,7 +34,7 @@ export function LiveDemo() {
       <div className="glass glow-accent overflow-hidden rounded-2xl p-1.5">
         <iframe
           src={demoUrl}
-          title="inventory-ledger — live offline-first demo"
+          title="inventory-ledger: live offline-first demo"
           loading="lazy"
           sandbox="allow-scripts allow-same-origin allow-forms"
           className="block h-[32rem] w-full rounded-xl"
