@@ -18,11 +18,12 @@ artifact: the source is meant to be read by reviewers, so it stays small and leg
 
 ## Pages (`app/`)
 - `page.tsx` — landing: hero · stack-evolution timeline · selected work (4 deep) ·
-  also-shipped (3 compact, link out) · engineering teaser.
-- `work/[slug]/page.tsx` — case-study template. `generateStaticParams` over the four known
-  slugs; `dynamicParams = false` so unknown slugs 404. Per-page metadata.
-- `engineering/page.tsx` — the inventory-ledger showcase. Leads with the embedded live demo
+  also-shipped (3 compact, link out) · demonstration teaser.
+- `work/[slug]/page.tsx` — case-study template. `generateStaticParams` over all known
+  slugs (4 deep + 3 compact); `dynamicParams = false` so unknown slugs 404. Per-page metadata.
+- `demonstration/page.tsx` — the inventory-ledger showcase. Leads with the embedded live demo
   (`LiveDemo`), then plain-language architecture, then the repo link.
+- `contact/page.tsx` — contact page: intro + `ContactForm`; direct channels live in the footer.
 - `about/page.tsx` — two-person-studio framing.
 - `layout.tsx` — shell + fonts + metadata; skip-to-content link, degrade-visible `<noscript>`
   fallback for motion. `template.tsx` — subtle route-transition fade.
@@ -31,8 +32,8 @@ artifact: the source is meant to be read by reviewers, so it stays small and leg
 
 ## Components (`components/`)
 - `ui.tsx` — layout primitives: `Container`, `Section`, `SectionLabel`, `SpecRow`, `Chip`.
-- `Nav.tsx`, `Footer.tsx` — shell. Footer is where the contact bar (email / phone /
-  WhatsApp / LinkedIn + vCard + Iano profile-card link) will land.
+- `Nav.tsx`, `Footer.tsx` — shell. Footer carries the contact bar (email / phone /
+  WhatsApp / LinkedIn + vCard + Iano profile-card link).
 - `Hero.tsx` — landing hero with a staggered load entrance + kinetic headline.
 - `StackTimeline.tsx` — the signature: the 2020→2026 axis (line draws, present node glows).
 - `Reveal.tsx` — reusable entrance primitive (opacity/translate/blur variants, `useReducedMotion`-aware).
@@ -41,6 +42,8 @@ artifact: the source is meant to be read by reviewers, so it stays small and leg
 - `Magnetic.tsx` — cursor-magnetic wrapper (motion springs, no extra dep).
 - `Spotlight.tsx` — glass surface with a cursor-tracked highlight; the `Card` primitive builds on it.
 - `LiveDemo.tsx` — embeds the standalone inventory-ledger client, with a fallback card.
+- `ProjectCarousel.tsx` — case-study image gallery (cover + per-project shots).
+- `ContactForm.tsx` — the contact-page form.
 
 ## Design system — "Dark Dimensional" (adaptive light/dark)
 - Tokens live in `app/globals.css` via Tailwind `@theme`: core `background/foreground/muted/
