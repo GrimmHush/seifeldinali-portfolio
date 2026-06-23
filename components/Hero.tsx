@@ -157,6 +157,7 @@ export function Hero() {
             alt="Seifeldin Ali"
             fill
             priority
+            quality={90}
             sizes="(min-width: 1024px) 20rem, 100vw"
             className="rounded-xl object-cover"
           />

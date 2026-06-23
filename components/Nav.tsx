@@ -149,7 +149,7 @@ export function Nav() {
                               href={`/work/${p.slug}`}
                               role="menuitem"
                               onClick={() => setOpen(false)}
-                              className="block rounded-lg px-3 py-2 transition-colors hover:bg-surface-elevated hover:text-accent"
+                              className="block rounded-lg px-3 py-2 text-foreground transition-colors hover:bg-surface-elevated hover:text-accent"
                             >
                               {p.name}
                             </Link>

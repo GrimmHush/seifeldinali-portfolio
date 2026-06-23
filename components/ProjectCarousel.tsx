@@ -98,11 +98,30 @@ export function ProjectCarousel({ images }: { images: ProjectImage[] }) {
               alt={current.alt}
               fill
               sizes="48rem"
+              quality={90}
               className="object-contain"
               priority={index === 0}
             />
           </motion.button>
         </AnimatePresence>
+        {/* Warm the optimizer + browser cache for the neighbouring slides so
+            paging is instant rather than a cold fetch. `invisible` still loads
+            and lays the image out at full frame size (same optimized asset). */}
+        {count > 1 && (
+          <div aria-hidden className="pointer-events-none invisible absolute inset-0">
+            {[(index + 1) % count, (index - 1 + count) % count].map((i) => (
+              <Image
+                key={images[i].src}
+                src={images[i].src}
+                alt=""
+                fill
+                sizes="48rem"
+                quality={90}
+                className="object-contain"
+              />
+            ))}
+          </div>
+        )}
         {controls}
       </div>
 
