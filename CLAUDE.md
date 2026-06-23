@@ -23,7 +23,8 @@ artifact: the source is meant to be read by reviewers, so it stays small and leg
 - `work/[slug]/page.tsx` — case-study template. `generateStaticParams` over all known
   slugs (4 deep + 3 compact); `dynamicParams = false` so unknown slugs 404. Per-page metadata.
 - `demonstration/page.tsx` — the inventory-ledger showcase. Leads with the embedded live demo
-  (`LiveDemo`), then plain-language architecture, then the repo link.
+  (`LiveDemo`, served from `inventory-ledger-demo.vercel.app`), then plain-language
+  architecture, then the repo link.
 - `contact/page.tsx` — contact page: intro + `ContactForm`; direct channels live in the footer.
 - `api/contact/route.ts` — contact-form backend: Zod-validates, honeypot-filters, best-effort
   in-memory rate-limits, then emails via Resend with `replyTo` set to the visitor (so a reply
