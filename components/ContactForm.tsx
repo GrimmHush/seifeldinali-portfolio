@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 
-// Netlify Forms, the App-Router way: the form is registered at build time by the
-// static stub in public/__forms.html, and we submit here via fetch (no full-page
-// reload). Field names MUST stay in sync with public/__forms.html.
+// Submits via fetch (no full-page reload) to the /api/contact route handler,
+// which validates and emails the message through Resend. Field names MUST stay
+// in sync with app/api/contact/route.ts.
 
 type Status = "idle" | "submitting" | "success" | "error";
-
-const FORM_NAME = "contact";
 
 const labelClass =
   "font-display text-xs font-bold uppercase tracking-[0.12em] text-muted";
@@ -23,16 +21,16 @@ export function ContactForm() {
     setStatus("submitting");
 
     const form = e.currentTarget;
-    const body = new URLSearchParams(
-      // FormData → string pairs; honeypot + form-name ride along automatically.
+    // FormData → plain object; the honeypot field rides along automatically.
+    const payload = Object.fromEntries(
       Array.from(new FormData(form).entries()).map(([k, v]) => [k, String(v)]),
     );
 
     try {
-      const res = await fetch("/__forms.html", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error(`Submission failed (${res.status})`);
       setStatus("success");
@@ -58,14 +56,9 @@ export function ContactForm() {
 
   return (
     <form
-      name={FORM_NAME}
       onSubmit={handleSubmit}
-      data-netlify="true"
-      netlify-honeypot="bot-field"
       className="glass mt-10 space-y-6 rounded-2xl p-6 sm:p-8"
     >
-      {/* Netlify needs form-name in the payload to route the submission. */}
-      <input type="hidden" name="form-name" value={FORM_NAME} />
       {/* Honeypot: hidden from humans, catches bots that fill every field. */}
       <p className="hidden">
         <label>

@@ -40,6 +40,10 @@ npm run test:e2e     # Playwright smoke test (run npx playwright install first)
 Hosted on Vercel, which detects Next.js with zero config (`npm run build`, Node 22 via
 `engines.node`). Pushes to `main` trigger a deploy.
 
+The contact form posts to `app/api/contact/route.ts`, which emails submissions via
+[Resend](https://resend.com). Set the environment variables from `.env.example` in
+Vercel (Project → Settings → Environment Variables) — at minimum `RESEND_API_KEY`.
+
 ## Project structure
 
 ```

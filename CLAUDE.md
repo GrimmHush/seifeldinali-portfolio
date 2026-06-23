@@ -4,7 +4,8 @@ Personal portfolio for Seifeldin Ali. Built as a public proof-of-competence
 artifact: the source is meant to be read by reviewers, so it stays small and legible.
 
 ## Stack
-- **Next.js 16** (App Router, React Server Components) — fully static (SSG); content is fixed.
+- **Next.js 16** (App Router, React Server Components) — static (SSG); content is fixed.
+  One exception: the `/api/contact` route handler (the contact-form backend).
 - **TypeScript (strict)**.
 - **Tailwind CSS v4** (CSS-first `@theme` tokens, no JS config).
 - **Framer Motion** (`motion` v12) for entrance/scroll orchestration.
@@ -24,6 +25,8 @@ artifact: the source is meant to be read by reviewers, so it stays small and leg
 - `demonstration/page.tsx` — the inventory-ledger showcase. Leads with the embedded live demo
   (`LiveDemo`), then plain-language architecture, then the repo link.
 - `contact/page.tsx` — contact page: intro + `ContactForm`; direct channels live in the footer.
+- `api/contact/route.ts` — contact-form backend: validates + honeypot-filters, emails via Resend
+  (`RESEND_API_KEY` / optional `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL`; see `.env.example`).
 - `about/page.tsx` — two-person-studio framing.
 - `layout.tsx` — shell + fonts + metadata; skip-to-content link, degrade-visible `<noscript>`
   fallback for motion. `template.tsx` — subtle route-transition fade.
@@ -43,7 +46,7 @@ artifact: the source is meant to be read by reviewers, so it stays small and leg
 - `Spotlight.tsx` — glass surface with a cursor-tracked highlight; the `Card` primitive builds on it.
 - `LiveDemo.tsx` — embeds the standalone inventory-ledger client, with a fallback card.
 - `ProjectCarousel.tsx` — case-study image gallery (cover + per-project shots).
-- `ContactForm.tsx` — the contact-page form.
+- `ContactForm.tsx` — the contact-page form; posts JSON to `/api/contact`.
 
 ## Design system — "Dark Dimensional" (adaptive light/dark)
 - Tokens live in `app/globals.css` via Tailwind `@theme`: core `background/foreground/muted/
