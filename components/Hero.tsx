@@ -150,7 +150,7 @@ export function Hero() {
         <motion.div
           data-reveal
           variants={v}
-          className="glass glow-accent relative aspect-[4/5] w-full max-w-xs overflow-hidden rounded-2xl p-1.5 lg:max-w-none"
+          className="glass glow-accent relative aspect-4/5 w-full max-w-xs overflow-hidden rounded-2xl p-1.5 lg:max-w-none"
         >
           <Image
             src="/portrait.jpeg"

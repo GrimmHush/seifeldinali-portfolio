@@ -37,7 +37,7 @@ export function LiveDemo() {
           title="inventory-ledger: live offline-first demo"
           loading="lazy"
           sandbox="allow-scripts allow-same-origin allow-forms"
-          className="block h-[32rem] w-full rounded-xl"
+          className="block h-128 w-full rounded-xl"
         />
       </div>
       <figcaption className="mt-2 text-sm text-muted">
