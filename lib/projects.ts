@@ -303,7 +303,7 @@ export const compactProjects: CompactProject[] = [
     stack: ["React (Create React App)"],
     status: "Built + maintained by Iano",
     detail:
-      "Serves shareable individual profile pages (e.g. /profile/saif) that double as digital business cards with save-contact and direct WhatsApp/LinkedIn links.",
+      "Serving as the Agency's marketing website and digital portfolio, iano.marketing is a dynamic showcase of the Nairobi-based team's creative capabilities. The site acts as a live demonstration of their expertise in UI/UX design, web development, and digital branding, offering prospective clients a curated look at their past work and core services. Through its sleek design and unconventional copy, the platform not only outlines their marketing and media production offerings but also perfectly encapsulates the distinct brand voice they build for their partners.",
     cover: cover("iano-marketing", "Iano Marketing"),
     gallery: gallery("iano-marketing", 4, "Iano Marketing"),
   },

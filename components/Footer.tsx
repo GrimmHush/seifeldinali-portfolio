@@ -102,7 +102,7 @@ export function Footer() {
         </ul>
 
         <p className="mt-14 text-sm text-muted">
-          © {new Date().getFullYear()} {contact.name} · Built with Next.js
+          © {new Date().getFullYear()} {contact.name}
         </p>
       </Container>
     </footer>
