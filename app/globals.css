@@ -1,26 +1,51 @@
 @import "tailwindcss";
 
 /* ── Design tokens ──────────────────────────────────────────────
-   Semantic palette. Light/dark flips here, so components reference
-   the token (text-muted, border-border, text-accent) and never a
-   raw colour or an opacity hack. */
+   "Dark Dimensional" — an adaptive system. Components reference the
+   semantic token (text-muted, border-border, bg-surface, text-accent)
+   and never a raw colour or an opacity hack. Light/dark flips here, and
+   the dimensional layer (mesh / glow / grain) adapts with it: glow on
+   near-black in dark, a soft tinted wash + depth in light. */
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --muted: #475569; /* slate-600 — secondary text */
-  --border: #e2e8f0; /* slate-200 — hairlines */
-  --accent: #2563eb; /* blue-600 */
+  /* Core palette */
+  --background: #fcfcfd; /* Paper */
+  --foreground: #0b0b12;
+  --muted: #5b5b6b; /* secondary text */
+  --border: #e6e6ee; /* hairlines */
+  --accent: #5b54e0; /* Indigo (light needs more contrast on paper) */
+  --accent-2: #0fb5be; /* Cyan */
   --accent-contrast: #ffffff;
+
+  /* Dimensional layer */
+  --surface: rgba(255, 255, 255, 0.55); /* glass fill */
+  --surface-elevated: rgba(255, 255, 255, 0.78);
+  --glow: rgba(91, 84, 224, 0.22); /* accent glow, subtle on paper */
+  --grain-opacity: 0.035;
+
+  /* Gradient-mesh stops (full rgba — dropped into radial-gradients) */
+  --mesh-1: rgba(124, 131, 255, 0.18);
+  --mesh-2: rgba(52, 224, 232, 0.12);
+  --mesh-3: rgba(168, 130, 255, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --muted: #94a3b8; /* slate-400 */
-    --border: #1e293b; /* slate-800 */
-    --accent: #3b82f6; /* blue-500 */
-    --accent-contrast: #ffffff;
+    --background: #08080b; /* Ink */
+    --foreground: #ededf2;
+    --muted: #8a8aa3; /* Slate */
+    --border: #1c1c26;
+    --accent: #7c83ff; /* Indigo */
+    --accent-2: #34e0e8; /* Cyan */
+    --accent-contrast: #08080b;
+
+    --surface: rgba(255, 255, 255, 0.03);
+    --surface-elevated: rgba(255, 255, 255, 0.055);
+    --glow: rgba(124, 131, 255, 0.45);
+    --grain-opacity: 0.05;
+
+    --mesh-1: rgba(124, 131, 255, 0.16);
+    --mesh-2: rgba(52, 224, 232, 0.1);
+    --mesh-3: rgba(168, 130, 255, 0.12);
   }
 }
 
@@ -30,11 +55,25 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
   --color-accent-contrast: var(--accent-contrast);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-display: var(--font-bricolage), var(--font-hanken), system-ui, sans-serif;
+
+  /* Fluid type scale — clamp()-driven, no breakpoint jumps. */
+  --text-hero: clamp(2.75rem, 1.4rem + 5.6vw, 5.75rem);
+  --text-hero--line-height: 1.06;
+  --text-hero--letter-spacing: -0.035em;
+  --text-display: clamp(2rem, 1.2rem + 3.4vw, 3.5rem);
+  --text-display--line-height: 1.2;
+  --text-display--letter-spacing: -0.025em;
+  --text-title: clamp(1.4rem, 1.1rem + 1.1vw, 1.875rem);
+  --text-title--line-height: 1.18;
+  --text-title--letter-spacing: -0.015em;
 }
 
 /* ── Base typography ──────────────────────────────────────────── */
@@ -57,6 +96,93 @@ body {
   p {
     text-wrap: pretty;
   }
+}
+
+/* ── Dimensional layer ─────────────────────────────────────────
+   Fixed, behind everything, never interactive. Mesh = layered radial
+   gradients that drift slowly; grain = a tiled SVG noise tile. Both are
+   cheap (no canvas, no blur on the grain) and degrade to a flat
+   background with no JS. The drift is gated behind motion preference. */
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.atmosphere-mesh {
+  position: absolute;
+  inset: -25%;
+  background:
+    radial-gradient(38% 44% at 18% 12%, var(--mesh-1), transparent 70%),
+    radial-gradient(34% 40% at 82% 22%, var(--mesh-2), transparent 70%),
+    radial-gradient(46% 50% at 62% 88%, var(--mesh-3), transparent 72%);
+  filter: blur(20px);
+}
+
+.atmosphere-grain {
+  position: absolute;
+  inset: 0;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .atmosphere-mesh {
+    animation: mesh-drift 32s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes mesh-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -2%, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-2%, 2%, 0) scale(1.03);
+  }
+}
+
+/* ── Glass + glow utilities ────────────────────────────────────
+   A thin frosted surface used by cards, the nav, and framed media. */
+@utility glass {
+  background-color: var(--surface);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border: 1px solid var(--border);
+}
+
+@utility glow-accent {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent),
+    0 0 40px -6px var(--glow);
+}
+
+/* Cursor-tracked spotlight — components feed --mx/--my (percent). */
+@utility spotlight {
+  position: relative;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    16rem 16rem at var(--mx, 50%) var(--my, 0%),
+    color-mix(in oklab, var(--accent) 14%, transparent),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.spotlight:hover::before {
+  opacity: 1;
 }
 
 /* ── A11y & polish ────────────────────────────────────────────── */

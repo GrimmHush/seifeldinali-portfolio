@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/ui";
 import { deepProjects, compactProjects } from "@/lib/projects";
 
@@ -16,13 +17,29 @@ const projectGroups = [
   items: g.items.map((p) => ({ slug: p.slug, name: p.name })),
 }));
 
+// Links that sit after the Projects dropdown.
+const trailingLinks = [
+  { href: "/demonstration", label: "Demonstration" },
+  { href: "/contact", label: "Contact" },
+];
+
 export function Nav() {
   const pathname = usePathname();
+  const reduce = useReducedMotion();
   // Home is redundant on the landing page; the wordmark already links there.
   const onHome = pathname === "/";
 
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // The bar gains a frosted fill + hairline once the page scrolls under it.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Close the Projects menu on outside pointer / Escape.
   useEffect(() => {
@@ -43,21 +60,33 @@ export function Nav() {
     };
   }, [open]);
 
+  const onProjects = pathname.startsWith("/work");
+
   return (
-    <header className="border-b border-border">
-      <Container className="flex items-center justify-between py-5">
-        <Link href="/" className="font-mono text-sm font-semibold tracking-tight">
+    <header className="sticky top-0 z-40">
+      {/* Frosted backdrop on its own layer — keeping backdrop-filter off the
+          <header> itself so the dropdown (a descendant) can still blur the page
+          behind it rather than being trapped inside the header's filter. */}
+      <div
+        aria-hidden
+        className={`absolute inset-0 border-b transition-colors duration-300 ${
+          scrolled
+            ? "border-border bg-surface backdrop-blur-md backdrop-saturate-150"
+            : "border-transparent"
+        }`}
+      />
+      <Container className="relative flex items-center justify-between py-5">
+        <Link
+          href="/"
+          className="font-display text-lg font-bold tracking-tight transition-colors hover:text-accent"
+        >
           Seifeldin Ali
         </Link>
         <nav className="flex items-center gap-6 text-sm text-muted">
           {!onHome && (
-            <Link href="/" className="transition-colors hover:text-foreground">
-              Home
-            </Link>
+            <NavLink href="/" label="Home" active={false} />
           )}
-          <Link href="/about" className="transition-colors hover:text-foreground">
-            About
-          </Link>
+          <NavLink href="/about" label="About" active={pathname === "/about"} />
 
           <div ref={dropdownRef} className="relative">
             <button
@@ -65,7 +94,9 @@ export function Nav() {
               aria-haspopup="menu"
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="flex items-center gap-1 transition-colors hover:text-foreground"
+              className={`flex items-center gap-1 transition-colors hover:text-foreground ${
+                onProjects ? "text-foreground" : ""
+              }`}
             >
               Projects
               <svg
@@ -79,50 +110,68 @@ export function Nav() {
                 <path d="M3 4.5 6 7.5 9 4.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
-            {open && (
-              <div
-                role="menu"
-                className="absolute right-0 z-50 mt-3 w-56 rounded-md border border-border bg-background p-2 shadow-lg"
-              >
-                {projectGroups.map((group, i) => (
-                  <div
-                    key={group.label}
-                    className={i > 0 ? "mt-2 border-t border-border pt-2" : ""}
-                  >
-                    <p className="px-3 py-1 font-mono text-xs uppercase tracking-widest text-muted">
-                      {group.label}
-                    </p>
-                    <ul className="flex flex-col">
-                      {group.items.map((p) => (
-                        <li key={p.slug}>
-                          <Link
-                            href={`/work/${p.slug}`}
-                            role="menuitem"
-                            onClick={() => setOpen(false)}
-                            className="block rounded px-3 py-2 transition-colors hover:bg-border hover:text-foreground"
-                          >
-                            {p.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            )}
+            <AnimatePresence>
+              {open && (
+                <motion.div
+                  role="menu"
+                  initial={reduce ? false : { opacity: 0, y: -6, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={reduce ? undefined : { opacity: 0, y: -6, scale: 0.98 }}
+                  transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute right-0 top-full z-50 mt-7 w-60 rounded-xl border border-border bg-surface p-2 shadow-2xl backdrop-blur-md backdrop-saturate-150"
+                >
+                  {projectGroups.map((group, i) => (
+                    <div
+                      key={group.label}
+                      className={i > 0 ? "mt-2 border-t border-border pt-2" : ""}
+                    >
+                      <p className="px-3 py-1.5 font-display text-xs font-bold uppercase tracking-[0.12em] text-muted">
+                        {group.label}
+                      </p>
+                      <ul className="flex flex-col">
+                        {group.items.map((p) => (
+                          <li key={p.slug}>
+                            <Link
+                              href={`/work/${p.slug}`}
+                              role="menuitem"
+                              onClick={() => setOpen(false)}
+                              className="block rounded-lg px-3 py-2 transition-colors hover:bg-surface-elevated hover:text-accent"
+                            >
+                              {p.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          <Link
-            href="/demonstration"
-            className="transition-colors hover:text-foreground"
-          >
-            Demonstration
-          </Link>
-          <Link href="/contact" className="transition-colors hover:text-foreground">
-            Contact
-          </Link>
+          {trailingLinks.map((l) => (
+            <NavLink key={l.href} href={l.href} label={l.label} active={pathname === l.href} />
+          ))}
         </nav>
       </Container>
     </header>
+  );
+}
+
+// A nav link with a quiet accent underline when it's the active route.
+function NavLink({ href, label, active }: { href: string; label: string; active: boolean }) {
+  return (
+    <Link
+      href={href}
+      aria-current={active ? "page" : undefined}
+      className={`relative transition-colors hover:text-foreground ${
+        active ? "text-foreground" : ""
+      }`}
+    >
+      {label}
+      {active && (
+        <span aria-hidden className="absolute -bottom-1.5 left-0 h-px w-full bg-accent" />
+      )}
+    </Link>
   );
 }

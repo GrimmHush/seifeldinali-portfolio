@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { Container } from "@/components/ui";
+import { KineticText } from "@/components/KineticText";
+import { Magnetic } from "@/components/Magnetic";
 import { contact } from "@/lib/contact";
 
 // Inline icons — stroke-based, inherit currentColor, sized 1.1rem.
@@ -71,31 +73,38 @@ const items: Item[] = [
 
 export function Footer() {
   return (
-    <footer id="contact" className="mt-24 border-t border-border py-16">
+    <footer id="contact" className="mt-32 border-t border-border py-20">
       <Container className="flex flex-col items-center text-center">
-        <h2 className="font-serif text-3xl font-semibold tracking-tight">Get in touch</h2>
-        <p className="mt-3 max-w-md text-muted">
+        <KineticText
+          as="h2"
+          on="view"
+          text="Get in touch"
+          className="font-display text-display font-semibold"
+        />
+        <p className="mt-4 max-w-md text-muted">
           Building something that needs the whole system handled? Let&apos;s talk.
         </p>
 
-        <ul className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
+        <ul className="mt-8 flex flex-wrap justify-center gap-x-3 gap-y-2 text-sm">
           {items.map((item, i) => (
             <li key={i}>
               {"href" in item ? (
-                <a
-                  href={item.href}
-                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  {...(item.download ? { download: true } : {})}
-                  className="flex items-center gap-2 text-accent transition-opacity hover:opacity-70"
-                >
-                  {item.icon}
-                  <span className="underline underline-offset-4">
-                    {item.label}
-                    {item.external ? " ↗" : ""}
-                  </span>
-                </a>
+                <Magnetic strength={8}>
+                  <a
+                    href={item.href}
+                    {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    {...(item.download ? { download: true } : {})}
+                    className="glass flex items-center gap-2 rounded-full px-4 py-2 text-foreground transition-colors hover:text-accent"
+                  >
+                    {item.icon}
+                    <span>
+                      {item.label}
+                      {item.external ? " ↗" : ""}
+                    </span>
+                  </a>
+                </Magnetic>
               ) : (
-                <span className="flex items-center gap-2 text-muted">
+                <span className="flex items-center gap-2 px-4 py-2 text-muted">
                   {item.icon}
                   {item.text}
                 </span>
@@ -104,7 +113,7 @@ export function Footer() {
           ))}
         </ul>
 
-        <p className="mt-12 text-sm text-muted">
+        <p className="mt-14 text-sm text-muted">
           © {new Date().getFullYear()} {contact.name} · Built with Next.js
         </p>
       </Container>

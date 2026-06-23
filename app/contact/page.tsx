@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
+import { KineticText } from "@/components/KineticText";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
@@ -15,12 +16,11 @@ export default function ContactPage() {
       <article className="py-24">
         <Reveal as="section" on="load">
           <header>
-            <p className="font-mono text-sm uppercase tracking-widest text-muted">
-              Get in touch
-            </p>
-            <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
-              Contact
-            </h1>
+            <KineticText
+              as="h1"
+              text="Contact"
+              className="font-display text-display font-semibold"
+            />
             <p className="mt-6 max-w-xl text-xl leading-snug text-foreground">
               Building something that needs the whole system handled or just want to
               reach out? Tell me about it below, or use any of the direct channels in the

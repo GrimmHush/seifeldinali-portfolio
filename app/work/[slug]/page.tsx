@@ -12,6 +12,7 @@ import {
 } from "@/lib/projects";
 import { Container, Chip, SpecRow } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
+import { KineticText } from "@/components/KineticText";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
 
 // Cover first, then gallery shots — one combined reel for the carousel.
@@ -67,15 +68,17 @@ function DeepCaseStudy({ project }: { project: DeepProject }) {
     <>
       {/* CaseHero */}
       <Reveal as="section" on="load"><header>
-        <p className="font-mono text-sm uppercase tracking-widest text-muted">
+        <p className="font-display text-sm font-bold uppercase tracking-[0.15em] text-muted">
           {project.client} · {project.year}
         </p>
-        <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
-          {project.name}
-        </h1>
+        <KineticText
+          as="h1"
+          text={project.name}
+          className="mt-4 font-display text-display font-semibold"
+        />
         <p className="mt-5 max-w-2xl text-xl leading-snug">{project.positioning}</p>
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
-          <p className="font-mono text-xs uppercase tracking-widest text-muted">
+          <p className="font-display text-xs font-bold uppercase tracking-[0.15em] text-muted">
             {project.status}
           </p>
           <a
@@ -129,11 +132,11 @@ function DeepCaseStudy({ project }: { project: DeepProject }) {
         {/* Key decisions get the accent rule — the deliberate, defensible choices. */}
         <Reveal>
           <SpecRow label="Key decisions">
-            <ol className="space-y-5">
+            <ol className="space-y-4">
               {project.keyDecisions.map((decision) => (
                 <li
                   key={decision}
-                  className="border-l-2 border-accent pl-4 leading-relaxed"
+                  className="glass rounded-xl border-l-2 border-l-accent p-4 leading-relaxed"
                 >
                   {decision}
                 </li>
@@ -165,7 +168,7 @@ function DeepCaseStudy({ project }: { project: DeepProject }) {
       </div>
 
       {project.crossLinkEngineering && (
-        <Reveal as="section" className="mt-14 border-l-2 border-accent pl-6">
+        <Reveal as="section" className="glass mt-14 rounded-xl border-l-2 border-l-accent p-6">
           <p className="leading-relaxed">
             The offline-sync engineering behind this POS is demonstrated in a public,
             runnable proof-of-concept.
@@ -188,15 +191,17 @@ function CompactCaseStudy({ project }: { project: CompactProject }) {
   return (
     <>
       <Reveal as="section" on="load"><header>
-        <p className="font-mono text-sm uppercase tracking-widest text-muted">
+        <p className="font-display text-sm font-bold uppercase tracking-[0.15em] text-muted">
           Also shipped
         </p>
-        <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
-          {project.name}
-        </h1>
+        <KineticText
+          as="h1"
+          text={project.name}
+          className="mt-4 font-display text-display font-semibold"
+        />
         <p className="mt-5 max-w-2xl text-xl leading-snug">{project.positioning}</p>
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
-          <p className="font-mono text-xs uppercase tracking-widest text-muted">
+          <p className="font-display text-xs font-bold uppercase tracking-[0.15em] text-muted">
             {project.status}
           </p>
           <a

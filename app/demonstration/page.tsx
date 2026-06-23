@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { engineering } from "@/lib/projects";
 import { Container, SpecRow } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
+import { KineticText } from "@/components/KineticText";
 import { LiveDemo } from "@/components/LiveDemo";
 
 export const metadata: Metadata = {
@@ -16,12 +17,14 @@ export default function DemonstrationPage() {
       <article className="py-24">
         <Reveal as="section" on="load">
           <header>
-            <p className="font-mono text-sm uppercase tracking-widest text-muted">
+            <p className="font-display text-sm font-bold uppercase tracking-[0.15em] text-muted">
               Demonstration · public artifact
             </p>
-            <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">
-              {engineering.name}
-            </h1>
+            <KineticText
+              as="h1"
+              text={engineering.name}
+              className="mt-4 font-display text-display font-semibold"
+            />
             <p className="mt-5 max-w-2xl text-xl leading-snug">{engineering.intro}</p>
           </header>
         </Reveal>

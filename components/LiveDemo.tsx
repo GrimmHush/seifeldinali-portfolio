@@ -8,7 +8,7 @@ export function LiveDemo() {
 
   if (!demoUrl) {
     return (
-      <div className="flex min-h-40 flex-col items-center justify-center gap-2 border border-dashed border-border px-6 py-10 text-center">
+      <div className="glass flex min-h-40 flex-col items-center justify-center gap-2 rounded-2xl border-dashed px-6 py-10 text-center">
         <p className="text-sm text-muted">
           Live demo — toggle offline, queue movements, watch conflict resolution.
         </p>
@@ -31,13 +31,13 @@ export function LiveDemo() {
 
   return (
     <figure>
-      <div className="overflow-hidden border border-border">
+      <div className="glass glow-accent overflow-hidden rounded-2xl p-1.5">
         <iframe
           src={demoUrl}
           title="inventory-ledger — live offline-first demo"
           loading="lazy"
           sandbox="allow-scripts allow-same-origin allow-forms"
-          className="block h-[32rem] w-full"
+          className="block h-[32rem] w-full rounded-xl"
         />
       </div>
       <figcaption className="mt-2 text-sm text-muted">
